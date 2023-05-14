@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CAPSTONE - I DO EAT</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_app">I Do Eat</string>
 </resources>
