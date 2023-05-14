@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="loadig_logo">#8D72E1</color>
+    <color name="cp_1">#6C4AB6</color>
+    <color name="cp_2">#8D72E1</color>
+    <color name="cp_3">#8D9EFF</color>
+    <color name="cp_4">#B9E0FF</color>
 </resources>

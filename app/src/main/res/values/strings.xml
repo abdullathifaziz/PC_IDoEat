@@ -1,8 +1,23 @@
 <resources>
-    <string name="app_name">CAPSTONE - I DO EAT</string>
+    <string name="app_name">I DO EAT</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_scan">Scan</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_app">I Do Eat</string>
+    <string name="contem_des_1">onboardig 1</string>
+    <string name="contem_des_2">onboardig 2</string>
+    <string name="contem_des_3">onboardig 3</string>
+    <string name="title_onb_1">Jaga kalori harian Anda</string>
+    <string name="title_onb_2">Pola makan sehat ciri pribadi yang baik</string>
+    <string name="title_onb_3">Selalu Menberikan Rekomendasi Terbaik</string>
+    <string name="des_onb_1">Easy to manage your daily food in a standard of the recommendations</string>
+    <string name="des_onb_2">Easy to manage your daily food in a standard of the recommendations</string>
+    <string name="des_onb_3">Easy to manage your daily food in a standard of the recommendations</string>
+    <string name="btn_onb_1_lewati">Lewati</string>
+    <string name="btn_onb_1_lanjut">Lanjut</string>
+    <string name="btn_onb_2_kembali">Kembali</string>
+    <string name="btn_onb_2_lanjut">Lanjut</string>
+    <string name="btn_onb_3_kembali">Kembali</string>
+    <string name="btn_onb_3_lanjut">Lanjut</string>
 </resources>
