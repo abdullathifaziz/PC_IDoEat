@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Button
 import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.R
+import com.example.capstone_idoeat.authentication.LoginActivity
 import com.example.capstone_idoeat.databinding.ActivityOnBoarding1Binding
 
 class OnBoardingActivity1 : AppCompatActivity(), View.OnClickListener {
@@ -38,7 +39,7 @@ class OnBoardingActivity1 : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id){
             R.id.btn_onb_1_lewati -> {
-                val btnLewati = Intent(this@OnBoardingActivity1, MainActivity::class.java)
+                val btnLewati = Intent(this@OnBoardingActivity1, LoginActivity::class.java)
                 startActivity(btnLewati)
             }
 

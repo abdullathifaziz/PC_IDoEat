@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Button
 import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.R
+import com.example.capstone_idoeat.authentication.LoginActivity
 import com.example.capstone_idoeat.databinding.ActivityOnBoarding3Binding
 
 class OnBoardingActivity3 : AppCompatActivity(), View.OnClickListener {
@@ -43,7 +44,7 @@ class OnBoardingActivity3 : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.btn_onb_3_lanjut -> {
-                val btnLanjut = Intent(this@OnBoardingActivity3, MainActivity::class.java)
+                val btnLanjut = Intent(this@OnBoardingActivity3, LoginActivity::class.java)
                 startActivity(btnLanjut)
             }
         }

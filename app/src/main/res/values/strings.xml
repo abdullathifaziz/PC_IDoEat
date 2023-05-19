@@ -4,6 +4,7 @@
     <string name="title_home">Home</string>
     <string name="title_scan">Scan</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
     <string name="title_app">I Do Eat</string>
     <string name="contem_des_1">onboardig 1</string>
     <string name="contem_des_2">onboardig 2</string>
@@ -20,4 +21,18 @@
     <string name="btn_onb_2_lanjut">Lanjut</string>
     <string name="btn_onb_3_kembali">Kembali</string>
     <string name="btn_onb_3_lanjut">Lanjut</string>
+
+    <string name="masuk">Masuk</string>
+    <string name="email">Email Address</string>
+    <string name="hint_email">contoh@gmail.com</string>
+    <string name="password">Password</string>
+    <string name="buat_akun">Buat Akun</string>
+    <string name="hint_pass">Masukan Password</string>
+    <string name="hint_nama">Masukan Nama</string>
+    <string name="buat_password">Buat Password</string>
+    <string name="konf_password">Konfirmasi Password</string>
+    <string name="nama">Nama Lengkap</string>
+    <string name="sudah_punya_akun">Sudah memiliki akun?</string>
+    <string name="belum_punya_akun">Belum mempunyai akun?</string>
+    <string name="gagal_masuk">Email atau Password salah</string>
 </resources>
