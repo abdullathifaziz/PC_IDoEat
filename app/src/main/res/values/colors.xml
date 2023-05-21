@@ -12,4 +12,7 @@
     <color name="cp_2">#8D72E1</color>
     <color name="cp_3">#8D9EFF</color>
     <color name="cp_4">#B9E0FF</color>
+    <color name="warning">#F05E5E</color>
+    <color name="base">#8D72E1</color>
+    <color name="btnColor">#6C4AB6</color>
 </resources>
