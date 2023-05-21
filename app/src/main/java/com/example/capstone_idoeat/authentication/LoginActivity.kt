@@ -18,6 +18,7 @@ class LoginActivity : AppCompatActivity() {
 
 //    private lateinit var binding: ActivityLoginBinding
     //Ini budi
+    //dfgdfgfdgfd
 
     lateinit var editEmail: EditText
     lateinit var editPassword: EditText
