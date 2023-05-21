@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 class LoginActivity : AppCompatActivity() {
 
 //    private lateinit var binding: ActivityLoginBinding
+    //Ini budi
 
     lateinit var editEmail: EditText
     lateinit var editPassword: EditText
