@@ -1,5 +1,6 @@
 package com.example.capstone_idoeat.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.capstone_idoeat.authentication.LoginActivity
 import com.example.capstone_idoeat.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -41,11 +43,25 @@ class HomeFragment : Fragment() {
         return root
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        val textView1: TextView = binding.tvNama
-//        textView1.text = "Tfdgdfgfdgfdgdf"
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val textFullName: TextView = binding.fullName
+//        textFullName.text = "Tfdgdfgfdgfdgdf"
+
+        val firebaseUser = firebaseAuth.currentUser
+        if (firebaseUser!=null) {
+            textFullName.text = firebaseUser.displayName
+        }
+//        } else {
+//            menujuLogin()
+//        }
+    }
+
+//    private fun menujuLogin() {
+//        Intent(this@HomeFragment, LoginActivity::class.java).also {
+//            startActivity(it)
+//        }
 //    }
 
     override fun onDestroyView() {
