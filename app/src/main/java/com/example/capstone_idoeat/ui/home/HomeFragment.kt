@@ -7,11 +7,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.capstone_idoeat.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
+
+//    lateinit var textFullName: TextView
+
+    val firebaseAuth = FirebaseAuth.getInstance()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,12 +34,19 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+//        val textView: TextView = binding.textHome
+//        homeViewModel.text.observe(viewLifecycleOwner) {
+//            textView.text = it
+//        }
         return root
     }
+
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//
+//        val textView1: TextView = binding.tvNama
+//        textView1.text = "Tfdgdfgfdgfdgdf"
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

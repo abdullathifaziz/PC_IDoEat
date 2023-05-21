@@ -9,9 +9,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,7 +22,6 @@
         android:id="@+id/tv_judul_buat_akun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:fontFamily="@font/poppinsbold"
         android:text="@string/buat_akun"
         android:textColor="@color/cp_1"
@@ -36,7 +35,7 @@
         android:id="@+id/tv_judul_nama"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/poppinsmedium"
         android:gravity="start"
         android:text="@string/nama"
@@ -128,6 +127,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_judul_password" />
 
+    <TextView
+        android:id="@+id/tv_judul_password_konfirmasi"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:gravity="start"
+        android:text="@string/konf_password"
+        android:textColor="@color/cp_1"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_register_password" />
+
+    <com.example.capstone_idoeat.component.PasswordEditText
+        android:id="@+id/ed_register_password_konfirmasi"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:autofillHints=""
+        android:hint="@string/hint_pass_konf"
+        android:textColor="@color/cp_1"
+        android:fontFamily="@font/poppinslight"
+        android:background="@drawable/kotak_stroke"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_judul_password_konfirmasi" />
+
     <com.example.capstone_idoeat.component.RegisterButton
         android:id="@+id/btnRegister"
         android:layout_width="350dp"
@@ -136,7 +167,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/buat_akun"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_register_password" />
+        app:layout_constraintTop_toBottomOf="@+id/ed_register_password_konfirmasi" />
 
     <TextView
         android:id="@+id/tv_Error"
