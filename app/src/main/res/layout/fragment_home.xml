@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/poppinsbold"
         android:text="Selamat Pagi User"
         android:textSize="24sp"
@@ -31,11 +31,12 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cd_daily_report"
-        android:layout_width="369dp"
+        android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="20dp"
+        android:padding="16dp"
         app:cardBackgroundColor="#8D72E1"
         app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,8 +47,8 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppinsbold"
-            android:padding="12dp"
+            android:fontFamily="@font/poppinsmedium"
+
             android:text="Laporan Harian"
             android:textColor="@color/white" />
     </androidx.cardview.widget.CardView>
@@ -171,60 +172,69 @@
         app:layout_constraintTop_toTopOf="@+id/tv_recommendation_food" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="150dp"
-        android:layout_height="250dp"
-        android:layout_margin="8dp"
-        app:cardBackgroundColor="#8D72E1"
+        android:layout_width="160dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="8dp"
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_recommendation_food">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <!-- Gambar -->
             <ImageView
                 android:id="@+id/exp_reco_img_food"
-                android:layout_width="150dp"
+                android:layout_width="160dp"
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/exp_img_food" />
+                android:src="@drawable/exp_img_food"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <!-- Nama Makanan -->
             <TextView
                 android:id="@+id/tv_reco_food_name"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="Nama Makanan"
-                android:textColor="@color/white"
+                android:text="Gacoan Sidoarjo"
+                android:fontFamily="@font/poppinsmedium"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/exp_reco_img_food"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <!-- Harga -->
             <TextView
                 android:id="@+id/tv_price"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="Harga"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:text="Rp17.000"
+                android:fontFamily="@font/poppinslight"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <!-- Kalori -->
             <TextView
                 android:id="@+id/tv_reco_calories"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:fontFamily="@font/poppinsbold"
                 android:padding="8dp"
-                android:text="Jumlah Kalori"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:text="500 kal"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        </LinearLayout>
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
