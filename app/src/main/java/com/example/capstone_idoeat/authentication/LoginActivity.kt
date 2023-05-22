@@ -9,24 +9,35 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.R
 import com.example.capstone_idoeat.databinding.ActivityLoginBinding
+import com.example.capstone_idoeat.ui.home.HomeFragment
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 class LoginActivity : AppCompatActivity() {
 
 //    private lateinit var binding: ActivityLoginBinding
-    //Ini budi
-    //dfgdfgfdgfd
 
     lateinit var editEmail: EditText
     lateinit var editPassword: EditText
     lateinit var btnLogin: Button
     lateinit var tvRegister: TextView
+    lateinit var btnGoogle: Button
     lateinit var progressDialog: ProgressDialog
+    lateinit var googleSignInClient: GoogleSignInClient
 
     var firebaseAuth = FirebaseAuth.getInstance()
+
+    companion object{
+        private const val RC_SIGN_IN = 1001
+    }
 
     override fun onStart() {
         super.onStart()
@@ -53,11 +64,18 @@ class LoginActivity : AppCompatActivity() {
         editEmail = findViewById(R.id.ed_login_email)
         editPassword = findViewById(R.id.ed_login_password)
         btnLogin = findViewById(R.id.btnLogin)
+        btnGoogle = findViewById(R.id.btnGoogle)
         tvRegister = findViewById(R.id.tv_buat_akun_kecil)
 
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Masuk")
         progressDialog.setMessage("Silahkan menunggu sebentar...")
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         tvRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
@@ -70,6 +88,11 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Silahkan isi email dan password terlebih dahulu", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        btnGoogle.setOnClickListener {
+            val signInIntent = googleSignInClient.signInIntent
+            startActivityForResult(signInIntent, RC_SIGN_IN)
         }
 
         supportActionBar?.hide()
@@ -86,14 +109,44 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
             }
             .addOnFailureListener { error ->
-                Toast.makeText(this, error.localizedMessage, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, error.localizedMessage, LENGTH_SHORT).show()
             }
             .addOnCompleteListener {
                 progressDialog.dismiss()
             }
     }
 
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_SIGN_IN){
+            // call login
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                // berhasil
+                val account = task.getResult(ApiException::class.java)!!
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException){
+                e.printStackTrace()
+                Toast.makeText(applicationContext, e.localizedMessage, LENGTH_SHORT).show()
+            }
+        }
+    }
 
+    private fun firebaseAuthWithGoogle(idToken: String){
+        progressDialog.show()
+        val credentian = GoogleAuthProvider.getCredential(idToken, null)
+        firebaseAuth.signInWithCredential(credentian)
+            .addOnSuccessListener {
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+            .addOnFailureListener { error ->
+                Toast.makeText(this, error.localizedMessage, LENGTH_SHORT).show()
+            }
+            .addOnCompleteListener {
+                progressDialog.dismiss()
+            }
+    }
 
 
 

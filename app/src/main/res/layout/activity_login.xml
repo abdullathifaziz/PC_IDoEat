@@ -9,15 +9,14 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_marginBottom="490dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="25dp"
+        android:contentDescription="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_idoeat"
-        android:contentDescription="@string/app_name"/>
+        app:srcCompat="@drawable/logo_idoeat" />
 
 
     <TextView
@@ -38,7 +37,7 @@
         android:id="@+id/tv_judul_email"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/poppinsmedium"
         android:gravity="start"
         android:text="@string/email"
@@ -109,6 +108,39 @@
         app:layout_constraintTop_toBottomOf="@+id/ed_login_password" />
 
     <TextView
+        android:id="@+id/atau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/garis_atau"
+        android:backgroundTint="@color/cp_2"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppinsregular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+
+    <Button
+        android:id="@+id/btnGoogle"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/cp_1"
+        android:fontFamily="@font/poppinssemibold"
+        android:gravity="center"
+        android:paddingLeft="40dp"
+        android:text="@string/masuk_google"
+        android:textSize="15sp"
+        app:cornerRadius="10sp"
+        app:icon="@drawable/logogoogle"
+        app:iconPadding="-20dp"
+        app:iconTintMode="multiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/atau" />
+
+    <TextView
         android:id="@+id/tv_Error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -118,7 +150,7 @@
         android:fontFamily="@font/poppinssemibold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnGoogle"
         android:textAlignment="center"
         android:visibility="gone" />
 

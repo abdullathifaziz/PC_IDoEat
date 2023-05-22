@@ -38,4 +38,8 @@
     <string name="hint_pass_konf">Masukan Konfirmasi Password</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile">Profile</string>
+    <string name="keluar">Keluar</string>
+    <string name="masuk_google">Masuk dengan Google</string>
+    <string name="garis_atau">---------- atau ----------</string>
 </resources>
