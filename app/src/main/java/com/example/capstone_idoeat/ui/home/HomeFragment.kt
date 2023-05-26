@@ -1,46 +1,35 @@
 package com.example.capstone_idoeat.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.example.capstone_idoeat.authentication.LoginActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstone_idoeat.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
-//    lateinit var textFullName: TextView
-
     val firebaseAuth = FirebaseAuth.getInstance()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val homeViewModel: HomeViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
         return root
     }
 
@@ -57,6 +46,21 @@ class HomeFragment : Fragment() {
 //        } else {
 //            menujuLogin()
 //        }
+
+        // INFO: recycleView riwayat dan rekomendasi makanan
+        val recyclerViewHistory = binding.rvHomeHistory
+        val recyclerViewRecommendation = binding.rvHomeRecommendation
+
+        val layoutManagerHistory = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewHistory.layoutManager = layoutManagerHistory
+
+        val layoutManagerRecommendation = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewRecommendation.layoutManager = layoutManagerRecommendation
+
+        homeViewModel.rvAdapterList.observe(viewLifecycleOwner) { adapterList ->
+            recyclerViewHistory.adapter = adapterList[0]
+            recyclerViewRecommendation.adapter = adapterList[1]
+        }
     }
 
 //    private fun menujuLogin() {
