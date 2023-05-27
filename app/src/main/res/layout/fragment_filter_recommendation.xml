@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.recommendation.FilterRecommendationFragment">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Filter Maksimal Harga dengan Drag -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="Filter Maksimal Harga"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:padding="16dp" />
 
-</FrameLayout>
+    <SeekBar
+        android:id="@+id/seekBarMaxPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp" />
+
+    <TextView
+        android:id="@+id/textViewMaxPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#808080"
+        android:paddingHorizontal="16dp" />
+
+    <!-- Filter Jenis Kalori dengan Dropdown -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filter Jenis Kalori"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:padding="16dp" />
+
+    <Spinner
+        android:id="@+id/spinnerCalorieType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp" />
+
+</LinearLayout>

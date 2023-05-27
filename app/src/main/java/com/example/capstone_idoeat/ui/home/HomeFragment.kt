@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.capstone_idoeat.R
 import com.example.capstone_idoeat.databinding.FragmentHomeBinding
+import com.example.capstone_idoeat.ui.recommendation.FilterRecommendationFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment : Fragment() {
@@ -60,6 +63,19 @@ class HomeFragment : Fragment() {
         homeViewModel.rvAdapterList.observe(viewLifecycleOwner) { adapterList ->
             recyclerViewHistory.adapter = adapterList[0]
             recyclerViewRecommendation.adapter = adapterList[1]
+        }
+
+        binding.btnFilterRecommendation.setOnClickListener {
+            val filterRecommendationFragment = FilterRecommendationFragment()
+            filterRecommendationFragment.arguments = Bundle().apply {
+                putString("filter", "recommendation")
+            }
+
+            val fragmentManager = (binding.root.context as FragmentActivity).supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(binding.root.id, filterRecommendationFragment)
+                .addToBackStack(null)
+                .commit()
         }
     }
 
