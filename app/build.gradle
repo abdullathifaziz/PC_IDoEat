@@ -10,7 +10,7 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('D:\\Android\\PC_IDoEat\\key\\keystore-idoeat.jks')
+            storeFile file('D:\\AZIZ\\AMIKOM\\BANGKIT-2023\\CAPSTONE-PROJECT\\android\\keystore-idoeat.jks')
             storePassword 'bangkit2023'
             keyAlias 'keyidoeat'
             keyPassword 'bangkit2023'
@@ -33,7 +33,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.release
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
@@ -51,6 +51,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        mlModelBinding true
     }
 }
 
@@ -62,6 +63,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-auth:22.0.0'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
