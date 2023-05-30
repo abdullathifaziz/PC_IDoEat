@@ -5,8 +5,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <uses-feature android:name="android.hardware.camera" />
+
+
+
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -18,6 +21,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CAPSTONEIDOEAT"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.profile.TentangActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.BantuanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.PengaturanAppActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.AturPolaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.RiwayatKaloriActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.DetailProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".authentication.RegisterActivity"
             android:exported="false" />

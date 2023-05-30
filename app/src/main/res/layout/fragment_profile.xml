@@ -2,75 +2,276 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
-
-    <ImageView
-        android:id="@+id/iv_profile_foto"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/baseline_person_24"
-        android:contentDescription="@string/profile"/>
-
     <TextView
-        android:id="@+id/tv_nama"
+        android:id="@+id/judul_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/poppinsbold"
-        android:text="nama"
+        android:orientation="horizontal"
+        android:text="@string/profile"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_profile_foto"  />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_email"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linear_atas"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/poppinsbold"
-        android:text="email"
-        android:textSize="20sp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_nama"  />
+        app:layout_constraintTop_toBottomOf="@+id/judul_profile">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_profile_foto"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/baseline_person_24"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/cp_1"
+            android:contentDescription="@string/profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear_atas" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_nama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/poppinssemibold"
+                android:text="nama"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/poppinsregular"
+                android:text="email"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_id_user"
-        android:layout_width="wrap_content"
+        android:id="@+id/garis_atas"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/poppinsbold"
-        android:text="id user"
-        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_email"  />
+        app:layout_constraintTop_toBottomOf="@+id/linear_atas"
+        android:layout_marginTop="10dp"
+        android:text="@string/garis"
+        android:gravity="center"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/linear_profile"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/garis_atas"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/ic_profile"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:contentDescription="@string/profile"
+            android:src="@drawable/outline_account_circle_24" />
+
+        <TextView
+            android:id="@+id/tv_profile_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppinssemibold"
+            android:text="@string/set_profile"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_riwayat"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_profile"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/ic_riwayat"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:contentDescription="@string/set_riwayat"
+            android:src="@drawable/baseline_history_24" />
+
+        <TextView
+            android:id="@+id/tv_riwayat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppinssemibold"
+            android:text="@string/set_riwayat"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_kalori"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_riwayat"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/ic_kalori"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:contentDescription="@string/set_atur_kalori"
+            android:src="@drawable/outline_fastfood_24" />
+
+        <TextView
+            android:id="@+id/tv_kalori"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppinssemibold"
+            android:text="@string/set_atur_kalori"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/garis_bawah"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_kalori"
+        android:layout_marginTop="10dp"
+        android:text="@string/garis"
+        android:gravity="center"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/linear_pengaturan"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/garis_bawah"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/ic_pengaturan"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:contentDescription="@string/set_aplikasi"
+            android:src="@drawable/outline_settings_24" />
+
+        <TextView
+            android:id="@+id/tv_pengaturan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppinssemibold"
+            android:text="@string/set_aplikasi"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_bantuan"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_pengaturan"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/ic_bantuan"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:contentDescription="@string/set_bantuan"
+            android:src="@drawable/baseline_help_outline_24" />
+
+        <TextView
+            android:id="@+id/tv_bantuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppinssemibold"
+            android:text="@string/set_bantuan"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_tentang"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_bantuan"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/ic_tentang"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:contentDescription="@string/set_tentang"
+            android:src="@drawable/outline_info_24" />
+
+        <TextView
+            android:id="@+id/tv_tentang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppinssemibold"
+            android:text="@string/set_tentang"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_keluar"
         android:layout_width="360dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/cp_1"
         android:fontFamily="@font/poppinsbold"
-        android:background="@drawable/kotak_rounded"
         android:text="@string/keluar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_email" />
-
-
-
+        app:layout_constraintTop_toBottomOf="@+id/linear_tentang" />
 
 
 

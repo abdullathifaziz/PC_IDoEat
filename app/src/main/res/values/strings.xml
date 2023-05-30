@@ -42,4 +42,18 @@
     <string name="keluar">Keluar</string>
     <string name="masuk_google">Masuk dengan Google</string>
     <string name="garis_atau">---------- atau ----------</string>
+    <string name="garis">------------------------------------------------------------</string>
+    <string name="set_profile">Profile</string>
+    <string name="set_riwayat">Riwayat Kalori</string>
+    <string name="set_atur_kalori">Atur Pola Kalori Harian</string>
+    <string name="set_aplikasi">Pengaturan Aplikasi</string>
+    <string name="set_bantuan">Pusat Bantuan</string>
+    <string name="set_tentang">Tentang Kami</string>
+    <string name="simpan">Simpan</string>
+    <string name="back_profile">Profile</string>
+    <string name="back_riwayat">Riwayat Kalori</string>
+    <string name="back_atur_kalori">Atur Kalori</string>
+    <string name="back_aplikasi">Pengaturan Aplikasi</string>
+    <string name="back_bantuan">Pusat Bantuan</string>
+    <string name="back_tentang">Tentang Kami</string>
 </resources>
