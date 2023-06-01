@@ -1,18 +1,19 @@
 package com.example.capstone_idoeat.ui.scan
 
 import android.Manifest
+import android.R.attr
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.Surface
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
@@ -23,11 +24,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.capstone_idoeat.R
 import com.example.capstone_idoeat.databinding.FragmentScanBinding
+import com.example.capstone_idoeat.object_detection.Classifier
+import com.example.capstone_idoeat.object_detection.TensorFlowImageClassifier
 import java.io.File
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+
 
 class ScanFragment : Fragment() {
 
@@ -41,12 +46,18 @@ class ScanFragment : Fragment() {
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
     private var lensFacing = CameraSelector.LENS_FACING_BACK
+    private lateinit var classifier: Classifier
+
+    private val MODEL_PATH = "detect.tflite"
+    private val LABEL_PATH = "labelmap.txt"
+    private val INPUT_SIZE = 320
 
     companion object {
         private const val TAG = "ScanFragment"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+        private const val REQUEST_CODE_GALLERY = 11
     }
 
     override fun onCreateView(
@@ -70,13 +81,27 @@ class ScanFragment : Fragment() {
                 REQUEST_CODE_PERMISSIONS
             )
         }
-
+        initTensorFlow()
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         binding.btnCapture.setOnClickListener { takePhoto() }
         binding.btnSwitchCamera.setOnClickListener { switchCamera() }
+        binding.btnGalery.setOnClickListener { openGallery() }
+    }
 
-        startCamera()
+    private fun initTensorFlow() {
+        try {
+            classifier = TensorFlowImageClassifier.create(
+                requireContext().assets,
+                MODEL_PATH,
+                LABEL_PATH,
+                INPUT_SIZE
+            )
+            startCamera()
+        } catch (e: IOException) {
+            Log.e(TAG, "Failed to initialize TensorFlow: ${e.message}")
+            // Tangani error jika inisialisasi gagal
+        }
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
@@ -93,6 +118,7 @@ class ScanFragment : Fragment() {
         return if (mediaDir != null && mediaDir.exists())
             mediaDir else requireContext().filesDir
     }
+
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
@@ -131,9 +157,7 @@ class ScanFragment : Fragment() {
 
         val photoFile = File(
             outputDirectory,
-            SimpleDateFormat(
-                FILENAME_FORMAT, Locale.US
-            ).format(System.currentTimeMillis()) + ".jpg"
+            SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + ".jpg"
         )
 
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
@@ -144,14 +168,15 @@ class ScanFragment : Fragment() {
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     val savedUri = outputFileResults.savedUri ?: Uri.fromFile(photoFile)
-                    // Handle saved image URI tambahkan disini
+                    val bitmap = BitmapFactory.decodeFile(photoFile.absolutePath)
+                    bitmap?.let {
+                        if (::classifier.isInitialized) {
+                            val results = classifier.recognizeImage(it)
 
-                    // Menambahkan foto ke galeri menggunakan MediaStore
-                    val mediaScanIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
-                    mediaScanIntent.data = savedUri
-                    requireContext().sendBroadcast(mediaScanIntent)
-
-                    Toast.makeText(requireContext(), "Foto berhasil disimpan di galeri", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(requireContext(), "Classifier not initialized", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
 
                 override fun onError(exception: ImageCaptureException) {
@@ -199,6 +224,11 @@ class ScanFragment : Fragment() {
                 Log.e(TAG, "Failed to bind camera: $ex")
             }
         }, ContextCompat.getMainExecutor(requireContext()))
+    }
+
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, REQUEST_CODE_GALLERY)
     }
 
     override fun onDestroyView() {
