@@ -173,6 +173,9 @@ class ScanFragment : Fragment() {
                         if (::classifier.isInitialized) {
                             val results = classifier.recognizeImage(it)
 
+                            Toast.makeText(requireContext(), results.toString(), Toast.LENGTH_SHORT).show()
+                            Log.d(TAG, "____HASIL SCAN_____: $results")
+
                         } else {
                             Toast.makeText(requireContext(), "Classifier not initialized", Toast.LENGTH_SHORT).show()
                         }
