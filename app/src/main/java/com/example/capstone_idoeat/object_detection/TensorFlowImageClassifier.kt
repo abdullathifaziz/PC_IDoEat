@@ -88,7 +88,6 @@ class TensorFlowImageClassifier private constructor(
 
     companion object {
         private const val MAX_RESULTS = 10
-        private const val BATCH_SIZE = 1
         private const val PIXEL_SIZE = 3
         private const val THRESHOLD = 0.1f
 

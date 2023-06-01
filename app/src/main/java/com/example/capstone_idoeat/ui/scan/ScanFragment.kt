@@ -2,8 +2,10 @@ package com.example.capstone_idoeat.ui.scan
 
 import android.Manifest
 import android.R.attr
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -26,6 +28,7 @@ import com.example.capstone_idoeat.R
 import com.example.capstone_idoeat.databinding.FragmentScanBinding
 import com.example.capstone_idoeat.object_detection.Classifier
 import com.example.capstone_idoeat.object_detection.TensorFlowImageClassifier
+import com.example.capstone_idoeat.ui.scan_result.ScanResultFragment
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -57,7 +60,7 @@ class ScanFragment : Fragment() {
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
-        private const val REQUEST_CODE_GALLERY = 11
+        private const val REQUEST_GALLERY_IMAGE = 1001
     }
 
     override fun onCreateView(
@@ -152,44 +155,6 @@ class ScanFragment : Fragment() {
         }, ContextCompat.getMainExecutor(requireContext()))
     }
 
-    private fun takePhoto() {
-        val imageCapture = imageCapture ?: return
-
-        val photoFile = File(
-            outputDirectory,
-            SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + ".jpg"
-        )
-
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
-
-        imageCapture.takePicture(
-            outputOptions,
-            ContextCompat.getMainExecutor(requireContext()),
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    val savedUri = outputFileResults.savedUri ?: Uri.fromFile(photoFile)
-                    val bitmap = BitmapFactory.decodeFile(photoFile.absolutePath)
-                    bitmap?.let {
-                        if (::classifier.isInitialized) {
-                            val results = classifier.recognizeImage(it)
-
-                            Toast.makeText(requireContext(), results.toString(), Toast.LENGTH_SHORT).show()
-                            Log.d(TAG, "____HASIL SCAN_____: $results")
-
-                        } else {
-                            Toast.makeText(requireContext(), "Classifier not initialized", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
-
-                override fun onError(exception: ImageCaptureException) {
-                    Log.e(TAG, "Error capturing image: ${exception.message}", exception)
-                    // Handle capture error
-                }
-            }
-        )
-    }
-
     private fun switchCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
 
@@ -229,9 +194,70 @@ class ScanFragment : Fragment() {
         }, ContextCompat.getMainExecutor(requireContext()))
     }
 
+    private fun takePhoto() {
+        val imageCapture = imageCapture ?: return
+
+        val photoFile = File(
+            outputDirectory,
+            SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + ".jpg"
+        )
+
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+
+        imageCapture.takePicture(
+            outputOptions,
+            ContextCompat.getMainExecutor(requireContext()),
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                    val savedUri = outputFileResults.savedUri ?: Uri.fromFile(photoFile)
+                    val bitmap = BitmapFactory.decodeFile(photoFile.absolutePath)
+                    processImage(savedUri, bitmap)
+                }
+
+                override fun onError(exception: ImageCaptureException) {
+                    Log.e(TAG, "Error capturing image: ${exception.message}", exception)
+                    // Handle capture error
+                }
+            }
+        )
+    }
+
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, REQUEST_CODE_GALLERY)
+        startActivityForResult(intent, REQUEST_GALLERY_IMAGE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_GALLERY_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
+            val selectedImage: Uri? = data.data
+            selectedImage?.let {
+                val bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, it)
+                processImage(it, bitmap)
+            }
+        }
+    }
+    private fun processImage(imageUri: Uri?, bitmap: Bitmap?) {
+        bitmap?.let {
+            if (::classifier.isInitialized) {
+                val results = classifier.recognizeImage(it)
+                if (results != null) {
+                    navigateToResultScan(imageUri, results)
+                } else {
+                    Toast.makeText(requireContext(), "Makanan tidak teridentifikasi", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(requireContext(), "Classifier not initialized", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    private fun navigateToResultScan(imageUri: Uri?, results: List<Classifier.Recognition?>) {
+        val resultFragment = ScanResultFragment.newInstance(imageUri, results)
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_scan, resultFragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 
     override fun onDestroyView() {
