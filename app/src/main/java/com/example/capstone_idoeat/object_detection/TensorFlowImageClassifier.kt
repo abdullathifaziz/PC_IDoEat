@@ -24,7 +24,7 @@ class TensorFlowImageClassifier private constructor(
 
     override fun recognizeImage(bitmap: Bitmap?): List<Recognition?>? {
         val byteBuffer: ByteBuffer = convertBitmapToByteBuffer(bitmap)
-        val result = Array(1) { ByteArray(labelList.size) }
+        val result = Array(1) { FloatArray(MAX_RESULTS) }
         interpreter.run(byteBuffer, result)
         return getSortedResult(result)
     }
@@ -51,7 +51,7 @@ class TensorFlowImageClassifier private constructor(
         return byteBuffer
     }
 
-    private fun getSortedResult(labelProbArray: Array<ByteArray>): List<Recognition?> {
+    private fun getSortedResult(labelProbArray: Array<FloatArray>): List<Recognition?> {
         val pq: PriorityQueue<Recognition> = PriorityQueue(
             MAX_RESULTS,
             object : Comparator<Recognition?> {
@@ -61,8 +61,12 @@ class TensorFlowImageClassifier private constructor(
             })
 
         val labelSize = labelList.size
-        for (i in 0 until labelSize) {
-            val confidence = labelProbArray[0][i].toFloat() / 255.0f
+        val buffer = ByteBuffer.allocate(FLOAT32_SIZE).order(ByteOrder.nativeOrder())
+        for (i in 0 until MAX_RESULTS) {
+            buffer.rewind()
+            buffer.putFloat(labelProbArray[0][i])
+            buffer.rewind()
+            val confidence = buffer.float
             if (confidence > THRESHOLD) {
                 pq.add(
                     Recognition(
@@ -75,7 +79,7 @@ class TensorFlowImageClassifier private constructor(
         }
 
         val recognitions: ArrayList<Recognition?> = ArrayList()
-        val recognitionsSize = Math.min(pq.size, MAX_RESULTS)
+        val recognitionsSize = min(pq.size, MAX_RESULTS)
         for (i in 0 until recognitionsSize) {
             recognitions.add(pq.poll())
         }
@@ -83,7 +87,7 @@ class TensorFlowImageClassifier private constructor(
     }
 
     companion object {
-        private const val MAX_RESULTS = 3
+        private const val MAX_RESULTS = 10
         private const val BATCH_SIZE = 1
         private const val PIXEL_SIZE = 3
         private const val THRESHOLD = 0.1f
