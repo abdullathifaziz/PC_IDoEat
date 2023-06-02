@@ -56,4 +56,21 @@
     <string name="back_aplikasi">Pengaturan Aplikasi</string>
     <string name="back_bantuan">Pusat Bantuan</string>
     <string name="back_tentang">Tentang Kami</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="es_bantuan_atas">Ada yang bisa kami bantu?</string>
+    <string name="es_bantuan_atas_2">Kamu bisa cari dan baca topik yang ingin ditanyakan.</string>
+    <string name="topik_bantuan">Topik Bantuan</string>
+    <string name="topik_bantuan_1">Kenapa tidak bisa merubah foto profile?</string>
+    <string name="bantuan_1_img">bantuan 1</string>
+    <string name="topik_bantuan_1_des">Kamu tidak bisa merubah foto profile? Coba lakukan hal ini :
+\n
+\n1. Pergi ke Halaman Deteksi Makanan
+\n2. Berikan hak akses untuk kamera
+\n3. Pergi lagi ke halaman Edit Profile
+\n4. Selesai, kamu sudadh bisa mencoba untuk mengganti fotonya.
+\n
+\nTerimakasih sudah membaca.</string>
+    <string name="artikel">Apakah artikel ini membantu?</string>
+    <string name="juddul_artikel">Artikel</string>
+
 </resources>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.profile.TentangActivity">
 
     <TextView
@@ -60,9 +61,10 @@
 
     <LinearLayout
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/kotak_rounded"
+        android:backgroundTint="@color/cp_2"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,11 +74,11 @@
             android:id="@+id/kembali"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:fontFamily="@font/poppinsregular"
             android:textColor="@color/white"
             android:text="Kembali"
             android:textSize="18sp" />
-
     </LinearLayout>
 
 

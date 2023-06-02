@@ -52,7 +52,7 @@ class OnBoardingActivity3 : AppCompatActivity(), View.OnClickListener {
 
     private fun propertyAnimation(){
         ObjectAnimator.ofFloat(binding.ivOnb3, View.TRANSLATION_X, -30f, 30f).apply {
-            duration = 6000
+            duration = 4000
             repeatCount = ObjectAnimator.INFINITE
             repeatMode = ObjectAnimator.REVERSE
         }.start()
@@ -64,12 +64,12 @@ class OnBoardingActivity3 : AppCompatActivity(), View.OnClickListener {
         val btnLanjut = ObjectAnimator.ofFloat(binding.btnOnb3Lanjut, View.ALPHA, 1f).setDuration(500)
         val slidenav = ObjectAnimator.ofFloat(binding.ivSlideNav3, View.ALPHA, 1f).setDuration(500)
 
-        val btn = AnimatorSet().apply {
-            playTogether(btnKembali, slidenav, btnLanjut)
-        }
+//        val btn = AnimatorSet().apply {
+//            playTogether(btnKembali, slidenav, btnLanjut)
+//        }
 
         AnimatorSet().apply {
-            playSequentially(imageView, textTitle, textdesc, btn)
+            playSequentially(imageView, textTitle, textdesc)
             start()
         }
     }

@@ -4,7 +4,6 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -12,8 +11,6 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.R
-import com.example.capstone_idoeat.databinding.ActivityLoginBinding
-import com.example.capstone_idoeat.ui.home.HomeFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -25,13 +22,13 @@ class LoginActivity : AppCompatActivity() {
 
 //    private lateinit var binding: ActivityLoginBinding
 
-    lateinit var editEmail: EditText
-    lateinit var editPassword: EditText
-    lateinit var btnLogin: Button
-    lateinit var tvRegister: TextView
-    lateinit var btnGoogle: Button
-    lateinit var progressDialog: ProgressDialog
-    lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var editEmail: EditText
+    private lateinit var editPassword: EditText
+    private lateinit var btnLogin: Button
+    private lateinit var tvRegister: TextView
+    private lateinit var btnGoogle: Button
+    private lateinit var progressDialog: ProgressDialog
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     var firebaseAuth = FirebaseAuth.getInstance()
 

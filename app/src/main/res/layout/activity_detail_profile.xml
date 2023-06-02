@@ -4,47 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.profile.DetailProfileActivity">
 
 
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:id="@+id/linear_atas"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="70dp"-->
-<!--        android:background="@drawable/atas"-->
-<!--        android:elevation="5dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linear_atas"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-<!--        <ImageView-->
-<!--            android:id="@+id/iv_back"-->
-<!--            android:layout_width="35dp"-->
-<!--            android:layout_height="35dp"-->
-<!--            android:contentDescription="@string/profile"-->
-<!--            android:src="@drawable/round_arrow_back_ios_24"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/profile"
+            android:rotation="270"
+            android:src="@drawable/round_arrow_circle_up_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/judul_profile"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:fontFamily="@font/poppinsbold"-->
-<!--            android:text="@string/profile"-->
-<!--            android:textSize="22sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
+        <TextView
+            android:id="@+id/judul_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:fontFamily="@font/poppinsbold"
+            android:text="@string/edit_profile"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/cp_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 <!--        <ImageView-->
 <!--            android:id="@+id/iv_simpan_profile"-->
-<!--            android:layout_width="35dp"-->
-<!--            android:layout_height="35dp"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
 <!--            android:contentDescription="@string/profile"-->
 <!--            android:src="@drawable/round_check_24"-->
 <!--            android:layout_marginEnd="20dp"-->
@@ -52,7 +55,9 @@
 <!--            app:layout_constraintEnd_toEndOf="parent"-->
 <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_profile_foto"
@@ -64,7 +69,7 @@
         app:civ_border_width="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linear_atas" />
 
     <TextView
         android:id="@+id/tv_judul_nama"
@@ -87,6 +92,7 @@
         android:layout_marginTop="5dp"
         android:autofillHints=""
         android:hint="Nama"
+        android:textSize="18sp"
         android:inputType="textPersonName"
         android:textColor="@color/cp_1"
         android:fontFamily="@font/poppinslight"
@@ -114,25 +120,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_nama" />
 
-    <EditText
-        android:id="@+id/ed_email"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
+<!--    <EditText-->
+<!--        android:id="@+id/ed_email"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:autofillHints=""-->
+<!--        android:hint="Email"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:textColor="@color/cp_1"-->
+<!--        android:fontFamily="@font/poppinslight"-->
+<!--        android:background="@drawable/kotak_stroke"-->
+<!--        android:paddingLeft="10dp"-->
+<!--        android:paddingTop="10dp"-->
+<!--        android:paddingRight="10dp"-->
+<!--        android:paddingBottom="10dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tv_judul_email"-->
+<!--        tools:ignore="TextFields" />-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:autofillHints=""
-        android:hint="Email"
-        android:inputType="textPersonName"
-        android:textColor="@color/cp_1"
-        android:fontFamily="@font/poppinslight"
-        android:background="@drawable/kotak_stroke"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_judul_email"
-        tools:ignore="TextFields" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_judul_email" >
+
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:hint="Email"
+            android:textColor="@color/cp_1"
+            android:fontFamily="@font/poppinslight"
+            android:background="@drawable/kotak_stroke"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp" />
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_simpan"
