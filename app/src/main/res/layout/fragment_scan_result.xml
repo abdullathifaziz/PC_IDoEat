@@ -1,17 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linear_atas"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/title_scan"
+            android:rotation="270"
+            android:src="@drawable/round_arrow_circle_up_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/judul_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:fontFamily="@font/poppinsbold"
+            android:gravity="center_vertical"
+            android:text="@string/hasil_scan"
+            android:textSize="18sp"
+            android:textColor="@color/cp_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/iv_picture_result"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/exp_img_food"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         android:scaleType="centerCrop"
-        android:layout_centerHorizontal="true" />
+        android:src="@drawable/exp_img_food"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_atas" />
 
     <TextView
         android:id="@+id/tv_name"
@@ -19,9 +62,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_picture_result"
         android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
         android:text="Nama Makanan"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_picture_result" />
 
     <TextView
         android:id="@+id/tv_ingredients"
@@ -29,8 +75,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_name"
         android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
         android:text="Bahan"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
     <TextView
         android:id="@+id/tv_calories"
@@ -38,8 +87,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_ingredients"
         android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
         android:text="Kalori"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ingredients" />
 
     <Button
         android:id="@+id/btn_eat"
@@ -47,7 +99,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_calories"
         android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
         android:text="Makan"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_calories" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

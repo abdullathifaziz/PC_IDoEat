@@ -7,7 +7,43 @@
     android:background="@color/white"
     tools:context=".ui.profile.PengaturanAppActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linear_atas"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/cp_1"
+        android:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/profile"
+            android:rotation="270"
+            android:src="@drawable/round_arrow_circle_up_24_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/judul"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:fontFamily="@font/poppinsbold"
+            android:gravity="center_vertical"
+            android:text="@string/set_aplikasi"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tv_pengaturan"

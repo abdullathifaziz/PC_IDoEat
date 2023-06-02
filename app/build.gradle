@@ -10,18 +10,18 @@ plugins {
 
 android {
     signingConfigs {
-//        debug {
-//            storeFile file('D:\\AZIZ\\AMIKOM\\BANGKIT-2023\\CAPSTONE-PROJECT\\android\\keystore-idoeat.jks')
-//            storePassword 'bangkit2023'
-//            keyAlias 'keyidoeat'
-//            keyPassword 'bangkit2023'
-//        }
-        release {
-            storeFile file('D:\\Android\\PC_IDoEat\\key\\keystore-idoeat.jks')
+        debug {
+            storeFile file('D:\\AZIZ\\AMIKOM\\BANGKIT-2023\\CAPSTONE-PROJECT\\android\\keystore-idoeat.jks')
             storePassword 'bangkit2023'
             keyAlias 'keyidoeat'
             keyPassword 'bangkit2023'
         }
+//        release {
+//            storeFile file('D:\\Android\\PC_IDoEat\\key\\keystore-idoeat.jks')
+//            storePassword 'bangkit2023'
+//            keyAlias 'keyidoeat'
+//            keyPassword 'bangkit2023'
+//        }
     }
     namespace 'com.example.capstone_idoeat'
     compileSdk 33
@@ -34,7 +34,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.release
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {

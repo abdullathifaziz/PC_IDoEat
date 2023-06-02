@@ -72,5 +72,7 @@
 \nTerimakasih sudah membaca.</string>
     <string name="artikel">Apakah artikel ini membantu?</string>
     <string name="juddul_artikel">Artikel</string>
+    <string name="hasil_scan">Hasil Scan</string>
+    <string name="detail_food">Detail Makanan</string>
 
 </resources>
