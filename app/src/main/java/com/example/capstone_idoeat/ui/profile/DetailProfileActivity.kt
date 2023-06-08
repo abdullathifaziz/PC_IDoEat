@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.databinding.ActivityDetailProfileBinding
+import com.example.capstone_idoeat.helper.UserPreference
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
@@ -30,6 +31,7 @@ class DetailProfileActivity : AppCompatActivity() {
     //    private var binding: FragmentProfileBinding?
     private lateinit var binding: ActivityDetailProfileBinding
     val firebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var preference: UserPreference
 
     companion object {
         const val REQUEST_CAMERA = 100
@@ -43,6 +45,9 @@ class DetailProfileActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_detail_profile)
         binding = ActivityDetailProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        preference = UserPreference(this)
+
 
         val ivPhoto: ImageView = binding.ivProfileFoto
         val edNama: EditText = binding.edNama

@@ -8,11 +8,14 @@ import android.widget.ImageView
 import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.R
 import com.example.capstone_idoeat.databinding.ActivityAturPolaBinding
+import com.example.capstone_idoeat.helper.UserPreference
 
 class AturPolaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAturPolaBinding
-            override fun onCreate(savedInstanceState: Bundle?) {
+    private lateinit var preference: UserPreference
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_atur_pola)
 
@@ -20,6 +23,8 @@ class AturPolaActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val ivKembali: ImageView = binding.ivBack
+
+        preference = UserPreference(this)
 
         ivKembali.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))

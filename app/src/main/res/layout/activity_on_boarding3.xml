@@ -76,19 +76,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:strokeColor="#FFFFFF" />
 
-        <ImageView
-            android:id="@+id/iv_slide_nav_3"
-            android:layout_width="80dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="50dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
 
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/slide_nav_3"
-            android:contentDescription="@string/contem_des_3"/>
+            <ImageView
+                android:id="@+id/iv_slide_nav_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/slide_nav_3"
+                android:contentDescription="@string/contem_des_3"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/btn_onb_3_lanjut"

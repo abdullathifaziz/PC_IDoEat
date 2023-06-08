@@ -63,7 +63,7 @@
         android:layout_below="@id/iv_picture_result"
         android:layout_marginTop="16dp"
         android:layout_marginStart="20dp"
-        android:text="Nama Makanan"
+        android:text="@string/food_name"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,7 @@
         android:layout_below="@id/tv_name"
         android:layout_marginTop="8dp"
         android:layout_marginStart="20dp"
-        android:text="Bahan"
+        android:text="@string/ingredient"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
@@ -88,7 +88,7 @@
         android:layout_below="@id/tv_ingredients"
         android:layout_marginTop="8dp"
         android:layout_marginStart="20dp"
-        android:text="Kalori"
+        android:text="@string/calories"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_ingredients" />
@@ -100,7 +100,7 @@
         android:layout_below="@id/tv_calories"
         android:layout_marginTop="16dp"
         android:layout_marginStart="20dp"
-        android:text="Makan"
+        android:text="@string/eat"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_calories" />

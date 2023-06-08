@@ -11,18 +11,21 @@ import com.example.capstone_idoeat.R
 import com.example.capstone_idoeat.authentication.LoginActivity
 import com.example.capstone_idoeat.databinding.ActivityOnBoarding2Binding
 import com.example.capstone_idoeat.databinding.ActivityTentangBinding
+import com.example.capstone_idoeat.helper.UserPreference
 import com.example.capstone_idoeat.onboarding.OnBoardingActivity1
 import com.example.capstone_idoeat.onboarding.OnBoardingActivity3
 
 class TentangActivity : AppCompatActivity(), View.OnClickListener {
 
-//    private lateinit var binding: ActivityTentangBinding
+    //    private lateinit var binding: ActivityTentangBinding
 //    private lateinit var kembali: TextView
+    private lateinit var preference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tentang)
 
+        preference = UserPreference(this)
 //        binding = ActivityTentangBinding.inflate(layoutInflater)
 //        setContentView(binding.root)
 
@@ -36,14 +39,13 @@ class TentangActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v?.id){
+        when (v?.id) {
             R.id.kembali -> {
                 val Kembali = Intent(this, MainActivity::class.java)
                 startActivity(Kembali)
             }
         }
     }
-
 
 
 }

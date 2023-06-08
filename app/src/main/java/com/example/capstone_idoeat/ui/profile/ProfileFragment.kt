@@ -10,10 +10,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.findNavController
-import com.example.capstone_idoeat.R
 import com.example.capstone_idoeat.authentication.LoginActivity
 import com.example.capstone_idoeat.databinding.FragmentProfileBinding
+import com.example.capstone_idoeat.helper.UserPreference
 import com.example.capstone_idoeat.ui.profile.bantuan.BantuanActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
@@ -23,6 +22,7 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     val firebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var preference: UserPreference
 
 
     override fun onCreateView(
@@ -164,6 +164,7 @@ class ProfileFragment : Fragment() {
 //        }
 
     }
+
 
 
     override fun onDestroyView() {

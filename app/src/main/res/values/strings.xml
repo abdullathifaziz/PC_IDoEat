@@ -9,70 +9,82 @@
     <string name="contem_des_1">onboardig 1</string>
     <string name="contem_des_2">onboardig 2</string>
     <string name="contem_des_3">onboardig 3</string>
-    <string name="title_onb_1">Jaga kalori harian Anda</string>
-    <string name="title_onb_2">Pola makan sehat ciri pribadi yang baik</string>
-    <string name="title_onb_3">Selalu Menberikan Rekomendasi Terbaik</string>
+    <string name="title_onb_1">Maintain your daily calories</string>
+    <string name="title_onb_2">A healthy diet is a good personality trait</string>
+    <string name="title_onb_3">Always Provides Best Recommendations</string>
     <string name="des_onb_1">Easy to manage your daily food in a standard of the recommendations</string>
     <string name="des_onb_2">Easy to manage your daily food in a standard of the recommendations</string>
     <string name="des_onb_3">Easy to manage your daily food in a standard of the recommendations</string>
-    <string name="btn_onb_1_lewati">Lewati</string>
-    <string name="btn_onb_1_lanjut">Lanjut</string>
-    <string name="btn_onb_2_kembali">Kembali</string>
-    <string name="btn_onb_2_lanjut">Lanjut</string>
-    <string name="btn_onb_3_kembali">Kembali</string>
-    <string name="btn_onb_3_lanjut">Lanjut</string>
-
-    <string name="masuk">Masuk</string>
+    <string name="btn_onb_1_lewati">Skip</string>
+    <string name="btn_onb_1_lanjut">Next</string>
+    <string name="btn_onb_2_kembali">Back</string>
+    <string name="btn_onb_2_lanjut">Continue</string>
+    <string name="btn_onb_3_kembali">Back</string>
+    <string name="btn_onb_3_lanjut">Continue</string>
+    <string name="masuk">Login</string>
     <string name="email">Email Address</string>
-    <string name="hint_email">contoh@gmail.com</string>
+    <string name="hint_email">Enter Email Address</string>
     <string name="password">Password</string>
-    <string name="buat_akun">Buat Akun</string>
-    <string name="hint_pass">Masukan Password</string>
-    <string name="hint_nama">Masukan Nama</string>
-    <string name="buat_password">Buat Password</string>
-    <string name="konf_password">Konfirmasi Password</string>
-    <string name="nama">Nama Lengkap</string>
-    <string name="sudah_punya_akun">Sudah memiliki akun?</string>
-    <string name="belum_punya_akun">Belum mempunyai akun?</string>
-    <string name="gagal_masuk">Email atau Password salah</string>
-    <string name="hint_pass_konf">Masukan Konfirmasi Password</string>
+    <string name="buat_akun">Create Account</string>
+    <string name="hint_pass">Enter Password</string>
+    <string name="hint_nama">Enter Name</string>
+    <string name="buat_password">Create Password</string>
+    <string name="konf_password">Confirm Password</string>
+    <string name="nama">Full Name</string>
+    <string name="sudah_punya_akun">Do you have account?</string>
+    <string name="belum_punya_akun">Don\'t have an account yet?</string>
+    <string name="gagal_masuk">Incorrect email or password</string>
+    <string name="hint_pass_konf">Enter Confirm Password</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile">Profile</string>
-    <string name="keluar">Keluar</string>
-    <string name="masuk_google">Masuk dengan Google</string>
-    <string name="garis_atau">---------- atau ----------</string>
+    <string name="keluar">Logout</string>
+    <string name="masuk_google">Login with Google</string>
+    <string name="garis_atau">---------- or ----------</string>
     <string name="garis">------------------------------------------------------------</string>
     <string name="set_profile">Profile</string>
-    <string name="set_riwayat">Riwayat Kalori</string>
-    <string name="set_atur_kalori">Atur Pola Kalori Harian</string>
-    <string name="set_aplikasi">Pengaturan Aplikasi</string>
-    <string name="set_bantuan">Pusat Bantuan</string>
-    <string name="set_tentang">Tentang Kami</string>
-    <string name="simpan">Simpan</string>
+    <string name="set_riwayat">Calorie History</string>
+    <string name="set_atur_kalori">Set Daily Calorie Pattern</string>
+    <string name="set_aplikasi">Application Settings</string>
+    <string name="set_bantuan">Help Center</string>
+    <string name="set_tentang">About App</string>
+    <string name="simpan">Save</string>
     <string name="back_profile">Profile</string>
-    <string name="back_riwayat">Riwayat Kalori</string>
-    <string name="back_atur_kalori">Atur Kalori</string>
-    <string name="back_aplikasi">Pengaturan Aplikasi</string>
-    <string name="back_bantuan">Pusat Bantuan</string>
-    <string name="back_tentang">Tentang Kami</string>
+    <string name="back_riwayat">Calorie History</string>
+    <string name="back_atur_kalori">Set Daily Calorie Pattern</string>
+    <string name="back_aplikasi">Application Settings</string>
+    <string name="back_bantuan">Help Center</string>
+    <string name="back_tentang">About App</string>
     <string name="edit_profile">Edit Profile</string>
-    <string name="es_bantuan_atas">Ada yang bisa kami bantu?</string>
-    <string name="es_bantuan_atas_2">Kamu bisa cari dan baca topik yang ingin ditanyakan.</string>
-    <string name="topik_bantuan">Topik Bantuan</string>
-    <string name="topik_bantuan_1">Kenapa tidak bisa merubah foto profile?</string>
-    <string name="bantuan_1_img">bantuan 1</string>
-    <string name="topik_bantuan_1_des">Kamu tidak bisa merubah foto profile? Coba lakukan hal ini :
+    <string name="es_bantuan_atas">Can I help you?</string>
+    <string name="es_bantuan_atas_2">You can search and read the topic you want to ask.</string>
+    <string name="topik_bantuan">Help Topic</string>
+    <string name="topik_bantuan_1">Why can\'t I change my profile photo?</string>
+    <string name="bantuan_1_img">Help 1</string>
+    <string name="bantuan_2_img">Help 2</string>
+    <string name="bantuan_3_img">Help 3</string>
+    <string name="bantuan_4_img">Help 4</string>
+    <string name="bantuan_5_img">Help 5</string>
+    <string name="topik_bantuan_1_des">You can\'t change your profile photo? Try doing this:
 \n
-\n1. Pergi ke Halaman Deteksi Makanan
-\n2. Berikan hak akses untuk kamera
-\n3. Pergi lagi ke halaman Edit Profile
-\n4. Selesai, kamu sudadh bisa mencoba untuk mengganti fotonya.
+\n1. Go to the Food Detection Page
+\n2. Grant permissions for the camera
+\n3. Go again to the Edit Profile page
+\n4. Done, you can try to replace the photo.
 \n
-\nTerimakasih sudah membaca.</string>
-    <string name="artikel">Apakah artikel ini membantu?</string>
-    <string name="juddul_artikel">Artikel</string>
-    <string name="hasil_scan">Hasil Scan</string>
-    <string name="detail_food">Detail Makanan</string>
+\nThanks for reading.</string>
+    <string name="artikel">Was this article helpful?</string>
+    <string name="juddul_artikel">Article</string>
+    <string name="hasil_scan">Scan results</string>
+    <string name="detail_food">Food Details</string>
+    <string name="ubah_bahasa">Change Application Language</string>
+    <string name="ubah">Change</string>
+    <string name="des_home_atas">Let\'s manage calories every day</string>
+    <string name="deteksi_makanan">Food Detection</string>
+    <string name="food_name">Food name</string>
+    <string name="ingredient">ingredient</string>
+    <string name="calories">Calories</string>
+    <string name="eat">Eat</string>
+
 
 </resources>

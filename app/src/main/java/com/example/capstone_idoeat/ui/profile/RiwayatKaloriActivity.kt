@@ -8,10 +8,12 @@ import android.widget.ImageView
 import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.R
 import com.example.capstone_idoeat.databinding.ActivityRiwayatKaloriBinding
+import com.example.capstone_idoeat.helper.UserPreference
 
 class RiwayatKaloriActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRiwayatKaloriBinding
+    private lateinit var preference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +21,8 @@ class RiwayatKaloriActivity : AppCompatActivity() {
 
         binding = ActivityRiwayatKaloriBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        preference = UserPreference(this)
 
         val ivKembali: ImageView = binding.ivBack
 

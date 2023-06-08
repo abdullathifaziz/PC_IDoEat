@@ -2,6 +2,7 @@ package com.example.capstone_idoeat.onboarding
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,16 +12,20 @@ import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.R
 import com.example.capstone_idoeat.authentication.LoginActivity
 import com.example.capstone_idoeat.databinding.ActivityOnBoarding1Binding
+import com.example.capstone_idoeat.helper.MyContextWrapper
+import com.example.capstone_idoeat.helper.UserPreference
 
 class OnBoardingActivity1 : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityOnBoarding1Binding
     private lateinit var btnLewati: Button
     private lateinit var btnLanjut: Button
+    private lateinit var preference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_on_boarding1)
+
 
         binding = ActivityOnBoarding1Binding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -72,5 +77,11 @@ class OnBoardingActivity1 : AppCompatActivity(), View.OnClickListener {
             playSequentially(imageView, textTitle, textdesc)
             start()
         }
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        preference = UserPreference(newBase!!)
+        val lang = preference.getLoginCount()
+        super.attachBaseContext(lang?.let { MyContextWrapper.wrap(newBase, it) })
     }
 }

@@ -11,16 +11,20 @@ import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.R
 import com.example.capstone_idoeat.authentication.LoginActivity
 import com.example.capstone_idoeat.databinding.ActivityOnBoarding3Binding
+import com.example.capstone_idoeat.helper.UserPreference
 
 class OnBoardingActivity3 : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityOnBoarding3Binding
     private lateinit var btnKembali: Button
     private lateinit var btnLanjut: Button
+    private lateinit var preference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_on_boarding3)
+
+        preference = UserPreference(this)
 
         binding = ActivityOnBoarding3Binding.inflate(layoutInflater)
         setContentView(binding.root)

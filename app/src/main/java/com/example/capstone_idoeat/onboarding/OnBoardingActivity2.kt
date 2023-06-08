@@ -9,16 +9,20 @@ import android.view.View
 import android.widget.Button
 import com.example.capstone_idoeat.R
 import com.example.capstone_idoeat.databinding.ActivityOnBoarding2Binding
+import com.example.capstone_idoeat.helper.UserPreference
 
 class OnBoardingActivity2 : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityOnBoarding2Binding
     private lateinit var btnKembali: Button
     private lateinit var btnLanjut: Button
+    private lateinit var preference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_on_boarding2)
+
+        preference = UserPreference(this)
 
         binding = ActivityOnBoarding2Binding.inflate(layoutInflater)
         setContentView(binding.root)
