@@ -51,7 +51,7 @@ class ScanFragment : Fragment() {
     private var lensFacing = CameraSelector.LENS_FACING_BACK
     private lateinit var classifier: Classifier
 
-    private val MODEL_PATH = "detect.tflite"
+    private val MODEL_PATH = "detect_food.tflite"
     private val LABEL_PATH = "labelmap.txt"
     private val INPUT_SIZE = 320
 
@@ -237,12 +237,12 @@ class ScanFragment : Fragment() {
             }
         }
     }
-    private fun processImage(imageUri: Uri?, bitmap: Bitmap?) {
+    private fun processImage(bitmapUri: Uri?, bitmap: Bitmap?) {
         bitmap?.let {
             if (::classifier.isInitialized) {
                 val results = classifier.recognizeImage(it)
                 if (results != null) {
-                    navigateToResultScan(imageUri, results)
+                    navigateToResultScan(bitmapUri, results)
                 } else {
                     Toast.makeText(requireContext(), "Makanan tidak teridentifikasi", Toast.LENGTH_SHORT).show()
                 }
@@ -251,15 +251,14 @@ class ScanFragment : Fragment() {
             }
         }
     }
-    private fun navigateToResultScan(imageUri: Uri?, results: List<Classifier.Recognition?>) {
-        val resultFragment = ScanResultFragment.newInstance(imageUri, results)
+    private fun navigateToResultScan(bitmapUri: Uri?, results: List<Classifier.Recognition?>) {
+        val resultFragment = ScanResultFragment.newInstance(bitmapUri, results)
         val fragmentManager = requireActivity().supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_scan, resultFragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         cameraExecutor.shutdown()

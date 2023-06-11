@@ -1,12 +1,17 @@
 package com.example.capstone_idoeat.object_detection
 
-import android.annotation.SuppressLint
 import android.content.res.AssetManager
 import android.graphics.Bitmap
+import android.graphics.RectF
+import android.util.Log
 import com.example.capstone_idoeat.object_detection.Classifier.Recognition
+import org.tensorflow.lite.DataType
 import org.tensorflow.lite.Interpreter
+import org.tensorflow.lite.support.common.ops.NormalizeOp
+import org.tensorflow.lite.support.image.ImageProcessor
+import org.tensorflow.lite.support.image.TensorImage
+import org.tensorflow.lite.support.image.ops.ResizeOp
 import java.io.*
-import java.lang.Math.min
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.MappedByteBuffer
@@ -21,76 +26,75 @@ class TensorFlowImageClassifier private constructor(
     private val labelList: List<String>,
     private val inputSize: Int
 ) : Classifier {
-
     override fun recognizeImage(bitmap: Bitmap?): List<Recognition?>? {
-        val byteBuffer: ByteBuffer = convertBitmapToByteBuffer(bitmap)
-        val result = Array(1) { FloatArray(MAX_RESULTS) }
-        interpreter.run(byteBuffer, result)
-        return getSortedResult(result)
+    //use convertBitmap
+        val imageBitmap = convertBitmap(bitmap)
+
+        // Run the inference
+        val outputLocations = Array(1) { Array(NUM_DETECTIONS) { FloatArray(4) } }
+        val outputClasses = Array(1) { FloatArray(NUM_DETECTIONS) }
+        val outputScores = Array(1) { FloatArray(NUM_DETECTIONS) }
+        val outputCount = FloatArray(1)
+
+        val outputs = mapOf(
+            1 to outputLocations,
+            3 to outputClasses,
+            0 to outputScores,
+            2 to outputCount
+        )
+
+        interpreter.runForMultipleInputsOutputs(arrayOf(imageBitmap.buffer), outputs)
+
+        // Retrieve detection results
+        val boxes = outputLocations[0] // Bounding box coordinates of detected objects
+        val classes = outputClasses[0].map { it.toInt() } // Class index of detected objects
+        val scores = outputScores[0] // Confidence of detected objects
+
+        // Create list of recognitions with bounding box coordinates
+        val recognitions = ArrayList<Recognition>()
+        for (i in 0 until boxes.size) {
+            val confidence = scores[i]
+            val classIndex = classes[i]
+            val className = labelList[classIndex]
+            val location = boxes[i]
+            val x1 = location[1] * bitmap!!.width
+            val y1 = location[0] * bitmap.height
+            val x2 = location[3] * bitmap.width
+            val y2 = location[2] * bitmap.height
+            val recognition = Recognition(
+                i.toString(),
+                className,
+                confidence,
+                RectF(x1, y1, x2, y2)
+            )
+            Log.d("_________TensorFlowImageClassifier", "className: $className" + "---->" + "confidence: $confidence")
+            recognitions.add(recognition)
+        }
+
+        Log.d("_________OUTPUT", "output: ${Arrays.toString(scores)}")
+        return recognitions
+    }
+
+    fun convertBitmap(bitmap: Bitmap?): TensorImage {
+        // Resize the bitmap to the desired input size (320x320)
+        val resizedBitmap = bitmap?.let { Bitmap.createScaledBitmap(it, 320, 320, true) }
+
+        // Create a TensorImage object with FLOAT32 data type
+        val tensorImage = TensorImage(DataType.FLOAT32)
+        tensorImage.load(resizedBitmap)
+
+        return tensorImage
     }
 
     override fun close() {
         interpreter.close()
     }
 
-    private fun convertBitmapToByteBuffer(bitmap: Bitmap?): ByteBuffer {
-        val byteBuffer: ByteBuffer = ByteBuffer.allocateDirect(inputSize * inputSize * PIXEL_SIZE * FLOAT32_SIZE)
-        byteBuffer.order(ByteOrder.nativeOrder())
-        val intValues = IntArray(bitmap!!.width * bitmap.height)
-        bitmap.getPixels(intValues, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
-        var pixel = 0
-        for (i in 0 until inputSize) {
-            for (j in 0 until inputSize) {
-                val `val` = intValues[pixel++]
-                byteBuffer.putFloat(((`val` shr 16 and 0xFF) / 255.0f))
-                byteBuffer.putFloat(((`val` shr 8 and 0xFF) / 255.0f))
-                byteBuffer.putFloat(((`val` and 0xFF) / 255.0f))
-            }
-        }
-        byteBuffer.rewind()
-        return byteBuffer
-    }
-
-    private fun getSortedResult(labelProbArray: Array<FloatArray>): List<Recognition?> {
-        val pq: PriorityQueue<Recognition> = PriorityQueue(
-            MAX_RESULTS,
-            object : Comparator<Recognition?> {
-                override fun compare(p0: Recognition?, p1: Recognition?): Int {
-                    return java.lang.Float.compare(p1!!.confidence!!, p0!!.confidence!!)
-                }
-            })
-
-        val labelSize = labelList.size
-        val buffer = ByteBuffer.allocate(FLOAT32_SIZE).order(ByteOrder.nativeOrder())
-        for (i in 0 until MAX_RESULTS) {
-            buffer.rewind()
-            buffer.putFloat(labelProbArray[0][i])
-            buffer.rewind()
-            val confidence = buffer.float
-            if (confidence > THRESHOLD) {
-                pq.add(
-                    Recognition(
-                        "" + i,
-                        if (labelSize > i) labelList[i] else "unknown",
-                        confidence
-                    )
-                )
-            }
-        }
-
-        val recognitions: ArrayList<Recognition?> = ArrayList()
-        val recognitionsSize = min(pq.size, MAX_RESULTS)
-        for (i in 0 until recognitionsSize) {
-            recognitions.add(pq.poll())
-        }
-        return recognitions
-    }
-
     companion object {
-        private const val MAX_RESULTS = 10
+        private const val MAX_RESULTS = 20
         private const val PIXEL_SIZE = 3
         private const val THRESHOLD = 0.1f
-
+        private const val NUM_DETECTIONS = 10
         // Konstanta untuk ukuran tipe data FLOAT32
         private const val FLOAT32_SIZE = 4
 
@@ -102,34 +106,38 @@ class TensorFlowImageClassifier private constructor(
             inputSize: Int
         ): Classifier {
             val model = Interpreter(loadModelFile(assetManager, modelPath))
+            val modelPath = modelPath
             val labelList = loadLabelList(assetManager, labelPath)
             return TensorFlowImageClassifier(model, labelList, inputSize)
         }
 
         @Throws(IOException::class)
         private fun loadModelFile(assetManager: AssetManager, modelPath: String): MappedByteBuffer {
-            val fileDescriptor = assetManager.openFd(modelPath)
-            val inputStream = FileInputStream(fileDescriptor.fileDescriptor)
-            val fileChannel: FileChannel = inputStream.channel
-            val startOffset = fileDescriptor.startOffset
-            val declaredLength = fileDescriptor.declaredLength
-            return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
+            val modelFileDescriptor = assetManager.openFd(modelPath)
+            val inputStream = FileInputStream(modelFileDescriptor.fileDescriptor)
+            val fileChannel = inputStream.channel
+            val startOffset = modelFileDescriptor.startOffset
+            val declaredLength = modelFileDescriptor.declaredLength
+            val modelByteBuffer = fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
+            fileChannel.close()
+            inputStream.close()
+            return modelByteBuffer
         }
 
         private fun loadLabelList(assetManager: AssetManager, labelPath: String): List<String> {
             val labelList: MutableList<String> = ArrayList()
 
             try {
-                val inputStream: InputStream = assetManager.open(labelPath)
-                val reader = BufferedReader(InputStreamReader(inputStream))
+                val labelFileInputStream = assetManager.open(labelPath)
+                val labelFileReader = BufferedReader(InputStreamReader(labelFileInputStream))
                 var line: String?
 
-                while (reader.readLine().also { line = it } != null) {
+                while (labelFileReader.readLine().also { line = it } != null) {
                     line?.let { labelList.add(it) }
                 }
 
-                reader.close()
-                inputStream.close()
+                labelFileReader.close()
+                labelFileInputStream.close()
             } catch (e: IOException) {
                 e.printStackTrace()
             }

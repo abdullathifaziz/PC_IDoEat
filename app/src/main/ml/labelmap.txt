@@ -17,4 +17,4 @@ plum
 qiwi 
 sachima 
 tomato
-coin
+coin 
