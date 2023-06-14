@@ -38,11 +38,7 @@ import java.util.concurrent.Executors
 
 
 class ScanFragment : Fragment() {
-
     private var _binding: FragmentScanBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     private var imageCapture: ImageCapture? = null

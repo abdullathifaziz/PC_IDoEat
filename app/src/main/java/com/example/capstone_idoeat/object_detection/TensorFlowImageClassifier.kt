@@ -28,7 +28,7 @@ class TensorFlowImageClassifier private constructor(
 ) : Classifier {
     override fun recognizeImage(bitmap: Bitmap?): List<Recognition?>? {
     //use convertBitmap
-        val imageBitmap = convertBitmap(bitmap)
+        val imageTensor = convertBitmap(bitmap)
 
         // Run the inference
         val outputLocations = Array(1) { Array(NUM_DETECTIONS) { FloatArray(4) } }
@@ -42,17 +42,18 @@ class TensorFlowImageClassifier private constructor(
             0 to outputScores,
             2 to outputCount
         )
-
-        interpreter.runForMultipleInputsOutputs(arrayOf(imageBitmap.buffer), outputs)
+        interpreter.runForMultipleInputsOutputs(arrayOf(imageTensor.buffer), outputs)
 
         // Retrieve detection results
         val boxes = outputLocations[0] // Bounding box coordinates of detected objects
         val classes = outputClasses[0].map { it.toInt() } // Class index of detected objects
         val scores = outputScores[0] // Confidence of detected objects
+        val threshold = 0.5f // Minimum threshold to filter out detected objects
+        val countAboveThreshold = scores.count { it >= threshold }
 
         // Create list of recognitions with bounding box coordinates
         val recognitions = ArrayList<Recognition>()
-        for (i in 0 until boxes.size) {
+        for (i in 0 until countAboveThreshold) {
             val confidence = scores[i]
             val classIndex = classes[i]
             val className = labelList[classIndex]

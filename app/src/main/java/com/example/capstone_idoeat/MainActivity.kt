@@ -2,6 +2,8 @@ package com.example.capstone_idoeat
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -16,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var preference: UserPreference
+    private var backPressedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,4 +48,18 @@ class MainActivity : AppCompatActivity() {
         super.attachBaseContext(lang?.let { MyContextWrapper.wrap(newBase, it) })
     }
 
+    override fun onBackPressed() {
+        if (backPressedOnce) {
+            super.onBackPressed()
+            finishAffinity() // Keluar dari aplikasi
+            return
+        }
+
+        this.backPressedOnce = true
+        Toast.makeText(this, "Tekan sekali lagi untuk keluar", Toast.LENGTH_SHORT).show()
+
+        Handler().postDelayed({
+            backPressedOnce = false
+        }, 2000) // Reset backPressedOnce setelah 2 detik
+    }
 }

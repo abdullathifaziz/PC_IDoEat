@@ -1,26 +1,28 @@
 package com.example.capstone_idoeat.ui.scan_result
 
-import android.content.Context
 import android.graphics.*
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstone_idoeat.databinding.FragmentScanResultBinding
 import com.example.capstone_idoeat.object_detection.Classifier
-import java.io.IOException
 
 class ScanResultFragment() : Fragment() {
     private var imageUri: Uri? = null
-    private lateinit var bitmap: Bitmap
+    private var imageResult : Bitmap? = null
     private var results: List<Classifier.Recognition?> = emptyList()
     private var _binding: FragmentScanResultBinding? = null
     private val binding get() = _binding!!
+    private lateinit var scanResultViewModel: ScanResultViewModel
+    private lateinit var foodScanAdapter: FoodScanAdapter
 
     companion object {
         fun newInstance(uri: Uri?, results: List<Classifier.Recognition?>): ScanResultFragment {
@@ -38,6 +40,8 @@ class ScanResultFragment() : Fragment() {
         _binding = FragmentScanResultBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        scanResultViewModel = ViewModelProvider(this).get(ScanResultViewModel::class.java)
+
         // Mendapatkan gambar dan hasil dari argumen
         arguments?.let {
             imageUri = it.getParcelable("imageUri")
@@ -45,8 +49,8 @@ class ScanResultFragment() : Fragment() {
         }
 
         // Tampilkan gambar di ImageView
-        imageUri?.let {
-            binding.ivPictureResult.setImageURI(it)
+        imageResult?.let {
+            binding.ivPictureResult.setImageBitmap(it)
         }
 
         // Tampilkan hasil deteksi pada gambar
@@ -69,7 +73,7 @@ class ScanResultFragment() : Fragment() {
                 val heightScale = imageViewHeight.toFloat() / imageHeight
 
                 // Buat canvas dan paint untuk menggambar kotak
-                val overlay = Bitmap.createBitmap(imageWidth, imageHeight, Bitmap.Config.ARGB_8888)
+                val overlay = Bitmap.createBitmap(imageViewWidth, imageViewHeight, Bitmap.Config.ARGB_8888)
                 val canvas = Canvas(overlay)
                 val paint = Paint().apply {
                     color = Color.RED
@@ -112,10 +116,10 @@ class ScanResultFragment() : Fragment() {
                 }
 
                 // Gabungkan gambar asli dengan overlay yang berisi kotak
-                val combinedBitmap = Bitmap.createBitmap(bitmap.width, bitmap.height, bitmap.config)
+                val combinedBitmap = Bitmap.createBitmap(imageViewWidth, imageViewHeight, bitmap.config)
                 val combinedCanvas = Canvas(combinedBitmap)
-                combinedCanvas.drawBitmap(bitmap, 0f, 0f, null)
-                combinedCanvas.drawBitmap(overlay, 0f, 0f, null)
+                combinedCanvas.drawBitmap(bitmap, null, RectF(0f, 0f, imageViewWidth.toFloat(), imageViewHeight.toFloat()), null)
+                combinedCanvas.drawBitmap(overlay, null, RectF(0f, 0f, imageViewWidth.toFloat(), imageViewHeight.toFloat()), null)
 
                 // Tampilkan gambar hasil dengan kotak pada ImageView
                 binding.ivPictureResult.setImageBitmap(combinedBitmap)
@@ -135,6 +139,16 @@ class ScanResultFragment() : Fragment() {
             }
         }
         binding.tvName.text = recognitionText.toString()
+        foodScanAdapter = FoodScanAdapter()
+
+        binding.rvFoodScanResult.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvFoodScanResult.adapter = foodScanAdapter
+        scanResultViewModel = ViewModelProvider(this).get(ScanResultViewModel::class.java)
+        scanResultViewModel.searchFoodScan("banana")
+        scanResultViewModel.listFoodResults.observe(viewLifecycleOwner, { scanResults ->
+            foodScanAdapter.setData(scanResults)
+        })
+        Log.d("__________________________scanResult", scanResultViewModel.listFoodResults.toString()  )
 
         return view
     }
