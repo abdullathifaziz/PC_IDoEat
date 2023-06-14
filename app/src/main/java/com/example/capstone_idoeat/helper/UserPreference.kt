@@ -23,6 +23,19 @@ class UserPreference(context: Context) {
         editor.apply()
     }
 
+    fun setChosenCalories(calories: String){
+        val editor = preference.edit()
+        editor.putString("ChosenCalories", calories)
+        editor.apply()
+    }
+
+    fun getChosenCalories(): String? {
+        if(preference.getString("ChosenCalories", null) != null){
+            return preference.getString("ChosenCalories", null)
+        }
+        return null
+    }
+
 //    companion object{
 //        const val PREFS_NAME = "login_pref"
 //        const val USERNAME= "username"

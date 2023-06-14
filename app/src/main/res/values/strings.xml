@@ -85,6 +85,32 @@
     <string name="ingredient">ingredient</string>
     <string name="calories">Calories</string>
     <string name="eat">Eat</string>
+    <string name="atur_pola_kalori">Set Calorie Patterns</string>
+    <string name="back">Back</string>
+    <string name="gender">Gender</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+    <string name="age">Age</string>
+    <string name="hitung_kalori_ideal">Calculate the Ideal</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 
+    <string-array name="activity_array">
+        <item>Kurang Aktif</item>
+        <item>Aktif Ringan</item>
+        <item>Aktivitas Sedang</item>
+        <item>Sangat Aktif</item>
+        <item>Sangat Aktif Sekali</item>
+    </string-array>
 
+    <string-array name="gender_array">
+        <item>Laki-laki</item>
+        <item>Perempuan</item>
+    </string-array>
+
+    <string-array name="diet_array">
+        <item>Menurunkan Berat Badan</item>
+        <item>Mempertahankan Berat Badan</item>
+        <item>Menambah Berat Badan</item>
+    </string-array>
 </resources>

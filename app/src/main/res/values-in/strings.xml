@@ -88,4 +88,33 @@
     <string name="calories">Kalori</string>
     <string name="eat">Makan</string>
 
+    <string name="atur_pola_kalori">Atur Pola Kalori</string>
+    <string name="back">Kembali</string>
+    <string name="gender">Gender</string>
+    <string name="weight">Berat Badan</string>
+    <string name="height">Tinggi Badan</string>
+    <string name="age">Umur</string>
+    <string name="hitung_kalori_ideal">Hitung Kalori Ideal</string>
+    <string name="cancel">Ulangi</string>
+    <string name="save">Simpan</string>
+
+    <string-array name="activity_array">
+        <item>Sedentary</item>
+        <item>Lightly Active</item>
+        <item>Moderate Activity</item>
+        <item>Highly Active</item>
+        <item>Very Active</item>
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="diet_array">
+        <item>Weight Loss</item>
+        <item>Maintain Weight</item>
+        <item>Weight Gain</item>
+    </string-array>
+
 </resources>
