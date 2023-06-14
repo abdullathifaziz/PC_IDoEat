@@ -99,22 +99,36 @@
     <string name="save">Simpan</string>
 
     <string-array name="activity_array">
-        <item>Sedentary</item>
-        <item>Lightly Active</item>
-        <item>Moderate Activity</item>
-        <item>Highly Active</item>
-        <item>Very Active</item>
+        <item>Kurang Aktif</item>
+        <item>Aktif Ringan</item>
+        <item>Aktivitas Sedang</item>
+        <item>Sangat Aktif</item>
+        <item>Sangat Aktif Sekali</item>
     </string-array>
 
     <string-array name="gender_array">
-        <item>Male</item>
-        <item>Female</item>
+        <item>Laki-laki</item>
+        <item>Perempuan</item>
     </string-array>
 
     <string-array name="diet_array">
-        <item>Weight Loss</item>
-        <item>Maintain Weight</item>
-        <item>Weight Gain</item>
+        <item>Menurunkan Berat Badan</item>
+        <item>Mempertahankan Berat Badan</item>
+        <item>Menambah Berat Badan</item>
     </string-array>
 
+    <string name="tittlr_riwayat">Riwayat Makanan</string>
+    <string name="title_rekom">Rekomendasi Makanan</string>
+    <string name="title_laporan">Laporan Harian</string>
+    <string name="versi_1_0_rilis">Versi 1.0 Rilis</string>
+    <string name="topik_bantuan_2">Berapa banyak foto yang bisa dideteksi?</string>
+    <string name="topik_bantuan_3">Aplikasi ini untuk apa?</string>
+    <string name="topik_bantuan_4">Kenapa datanya hanya sedikit?</string>
+    <string name="topik_bantuan_5">Kenapa rekomendasi makanan tidak sesuai keinginan?</string>
+    <string name="topik_bantuan_2_des">Jumlah foto yang dapat dideteksi secara bersamaan untuk sekarang hanya 2 dan tergantung pada beberapa faktor. Algoritma yang lebih canggih dan teknologi yang lebih maju mungkin memiliki kemampuan untuk mendeteksi lebih banyak foto dengan akurasi yang lebih tinggi.
+        \n
+        \nNamun, foto-foto dengan kualitas rendah, seperti foto yang buram atau dalam kondisi lingkungan yang rumit, mungkin lebih sulit untuk dideteksi secara akurat. Oleh karena itu, untuk kedepannya akan kita update lagi mengenai pemrosesan ini.</string>
+    <string name="topik_bantuan_3_des">Aplikasi ini merupakan aplikasi yang menampilkan rekomendasi makanan berdasarkan kebutuhan kalori dan kemampuan finansial pengguna, sekaligus menyediakan data kandungan kalori dan harga makanan yang dijual oleh restoran terdekat. Selain itu, aplikasi ini akan menyertakan fitur pengenalan gambar objek untuk makanan dan kemampuan untuk memprediksi konten kalori.</string>
+    <string name="topik_bantuan_4_des">Karena dataset yang tersedia untuk saat ini hanya beberapa saja, tetapi untuk kedepannya akan kami perbanyak. Kami ingin semua makanan masuk kedalam aplikasi ini, guna membantu masyarakat untuk memperbaiki badan.</string>
+    <string name="topik_bantuan_5_des">Karena rekomendasi makanan di aplikasi ini menyesuaikan dari cara user mengkonsumsi makanannya sehari-hari. Rekomendasi ini bisa diatur dari pola kalori dalam menu pengaturan profile.</string>
 </resources>

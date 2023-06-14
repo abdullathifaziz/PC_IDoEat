@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".ui.profile.bantuan.DetailBantuanActivity">
+    tools:context=".ui.profile.bantuan.DetailBantuanActivity3">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linear_atas"
@@ -53,7 +52,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:fontFamily="@font/poppinsbold"
-        android:text="@string/topik_bantuan_1"
+        android:text="@string/topik_bantuan_3"
         android:textColor="@color/cp_1"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +67,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:fontFamily="@font/poppinsmedium"
-        android:text="@string/topik_bantuan_1_des"
+        android:text="@string/topik_bantuan_3_des"
         android:textColor="@color/cp_1"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"

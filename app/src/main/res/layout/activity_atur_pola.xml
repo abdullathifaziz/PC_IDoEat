@@ -117,7 +117,8 @@
             android:layout_marginTop="8dp"
             android:hint="@string/weight"
             android:inputType="numberDecimal"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/etHeight"
@@ -126,7 +127,8 @@
             android:layout_marginTop="8dp"
             android:hint="@string/height"
             android:inputType="numberDecimal"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/etAge"
@@ -135,7 +137,8 @@
             android:layout_marginTop="8dp"
             android:hint="@string/age"
             android:inputType="number"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:autofillHints="" />
 
         <Spinner
             android:id="@+id/sp_activity"

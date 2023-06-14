@@ -9,18 +9,18 @@ plugins {
 
 android {
     signingConfigs {
-//        debug {
-//            storeFile file('D:\\AZIZ\\AMIKOM\\BANGKIT-2023\\CAPSTONE-PROJECT\\android\\keystore-idoeat.jks')
-//            storePassword 'bangkit2023'
-//            keyAlias 'keyidoeat'
-//            keyPassword 'bangkit2023'
-//        }
-        release {
-            storeFile file('D:\\Android\\PC_IDoEat\\key\\keystore-idoeat.jks')
+        debug {
+            storeFile file('D:\\AZIZ\\AMIKOM\\BANGKIT-2023\\CAPSTONE-PROJECT\\android\\keystore-idoeat.jks')
             storePassword 'bangkit2023'
             keyAlias 'keyidoeat'
             keyPassword 'bangkit2023'
         }
+//        release {
+//            storeFile file('D:\\Android\\PC_IDoEat\\key\\keystore-idoeat.jks')
+//            storePassword 'bangkit2023'
+//            keyAlias 'keyidoeat'
+//            keyPassword 'bangkit2023'
+//        }
     }
     namespace 'com.example.capstone_idoeat'
     compileSdk 33
@@ -33,7 +33,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.release
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
@@ -68,6 +68,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:20.0.4'
     implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
     implementation 'com.google.firebase:firebase-storage:20.0.1'
+//    implementation 'androidx.core:core-ktx:+'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -90,9 +92,7 @@ dependencies {
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'com.google.android.gms:play-services-vision:20.1.3'
-    implementation 'com.google.android.gms:play-services-auth:20.5.0'
-
-    implementation 'com.google.android.gms:play-services-base:18.1.0'
+    implementation 'com.google.android.gms:play-services-base:18.2.0'
     implementation 'com.google.android.gms:play-services-auth:20.5.0'
 
     def camerax_version = "1.2.3"

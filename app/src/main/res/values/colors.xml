@@ -8,11 +8,17 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="loadig_logo">#8D72E1</color>
-    <color name="cp_1">#6C4AB6</color>
-    <color name="cp_2">#8D72E1</color>
-    <color name="cp_3">#8D9EFF</color>
-    <color name="cp_4">#B9E0FF</color>
+<!--    <color name="cp_1">#6C4AB6</color>-->
+<!--    <color name="cp_2">#8D72E1</color>-->
+<!--    <color name="cp_3">#8D9EFF</color>-->
+<!--    <color name="cp_4">#B9E0FF</color>-->
     <color name="warning">#F05E5E</color>
     <color name="base">#8D72E1</color>
     <color name="btnColor">#6C4AB6</color>
+
+
+    <color name="cp_1">#3066BE</color>
+    <color name="cp_2">#119DA4</color>
+    <color name="cp_3">#6D9DC5</color>
+    <color name="cp_4">#80DED9</color>
 </resources>

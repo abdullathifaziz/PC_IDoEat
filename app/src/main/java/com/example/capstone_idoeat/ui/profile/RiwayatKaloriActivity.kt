@@ -38,8 +38,8 @@ class RiwayatKaloriActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
+//    override fun onSupportNavigateUp(): Boolean {
+//        onBackPressed()
+//        return true
+//    }
 }

@@ -27,7 +27,7 @@
         android:layout_marginTop="5dp"
         android:fontFamily="@font/poppinsregular"
         android:textColor="@color/cp_1"
-        android:text="Versi 1.0 Rilis"
+        android:text="@string/versi_1_0_rilis"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +64,7 @@
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/kotak_rounded"
-        android:backgroundTint="@color/cp_2"
+        android:backgroundTint="@color/cp_1"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +77,7 @@
             android:gravity="center"
             android:fontFamily="@font/poppinsregular"
             android:textColor="@color/white"
-            android:text="Kembali"
+            android:text="@string/back"
             android:textSize="18sp" />
     </LinearLayout>
 

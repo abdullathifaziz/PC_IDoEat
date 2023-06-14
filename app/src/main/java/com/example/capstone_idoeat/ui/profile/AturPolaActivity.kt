@@ -1,20 +1,37 @@
 package com.example.capstone_idoeat.ui.profile
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.DialogInterface
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.example.capstone_idoeat.R
 import com.example.capstone_idoeat.databinding.ActivityAturPolaBinding
+import com.example.capstone_idoeat.helper.BaseApplication
 import com.example.capstone_idoeat.helper.UserPreference
 
 class AturPolaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAturPolaBinding
     private lateinit var preference: UserPreference
+//    private lateinit var notificationManager: NotificationManagerCompat
+
+    companion object {
+        const val notificationid = 101
+        const val CHANNEL_ID = "notifikasi"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +81,21 @@ class AturPolaActivity : AppCompatActivity() {
             cardView.visibility = View.GONE // Sembunyikan CardView
         }
 
+        createNotification()
+    }
+
+    private fun createNotification(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Pola Kalori"
+            val descriptionText = "Data Kalori Ideal Yang Baru Telah Ditambahkan"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 
     private fun hitungKaloriIdeal() {
@@ -146,11 +178,35 @@ class AturPolaActivity : AppCompatActivity() {
         alertDialogBuilder.setPositiveButton("Simpan", DialogInterface.OnClickListener { dialog, which ->
             preference.setChosenCalories(kaloriIdeal)
             Toast.makeText(this, "Kalori Ideal tersimpan", Toast.LENGTH_SHORT).show()
+
+            sendNotification()
         })
         alertDialogBuilder.setNegativeButton("Batal", DialogInterface.OnClickListener { dialog, which ->
             dialog.dismiss()
         })
         alertDialogBuilder.show()
     }
+
+
+    private fun sendNotification(){
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.logo_idoeat)
+            .setContentTitle("I DO EAT")
+            .setContentText("Data Kalori Ideal Yang Baru Telah Ditambahkan")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+
+        with(NotificationManagerCompat.from(this)){
+            if (ActivityCompat.checkSelfPermission(
+                    this@AturPolaActivity,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return
+            }
+            notify(notificationid, builder.build())
+        }
+    }
+
 
 }

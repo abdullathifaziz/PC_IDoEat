@@ -85,8 +85,8 @@
     <string name="ingredient">ingredient</string>
     <string name="calories">Calories</string>
     <string name="eat">Eat</string>
+
     <string name="atur_pola_kalori">Set Calorie Patterns</string>
-    <string name="back">Back</string>
     <string name="gender">Gender</string>
     <string name="weight">Weight</string>
     <string name="height">Height</string>
@@ -96,21 +96,37 @@
     <string name="save">Save</string>
 
     <string-array name="activity_array">
-        <item>Kurang Aktif</item>
-        <item>Aktif Ringan</item>
-        <item>Aktivitas Sedang</item>
-        <item>Sangat Aktif</item>
-        <item>Sangat Aktif Sekali</item>
+        <item>Sedentary</item>
+        <item>Lightly Active</item>
+        <item>Moderate Activity</item>
+        <item>Highly Active</item>
+        <item>Very Active</item>
     </string-array>
 
     <string-array name="gender_array">
-        <item>Laki-laki</item>
-        <item>Perempuan</item>
+        <item>Male</item>
+        <item>Female</item>
     </string-array>
 
     <string-array name="diet_array">
-        <item>Menurunkan Berat Badan</item>
-        <item>Mempertahankan Berat Badan</item>
-        <item>Menambah Berat Badan</item>
+        <item>Weight Loss</item>
+        <item>Maintain Weight</item>
+        <item>Weight Gain</item>
     </string-array>
+
+    <string name="tittlr_riwayat">Food History</string>
+    <string name="title_rekom">Food Recommendations</string>
+    <string name="title_laporan">Daily Report</string>
+    <string name="back">Back</string>
+    <string name="versi_1_0_rilis">Version 1.0 Release</string>
+    <string name="topik_bantuan_2">How many photos can it detect?</string>
+    <string name="topik_bantuan_3">What is this app for?</string>
+    <string name="topik_bantuan_4">Why is there so little data?</string>
+    <string name="topik_bantuan_5">Why are the food recommendations not as desired?</string>
+    <string name="topik_bantuan_2_des">The number of photos that can be detected simultaneously is currently only 2 and depends on several factors. More sophisticated algorithms and more advanced technology may have the ability to detect more photos with greater accuracy.
+        \nHowever, low-quality photos, such as photos that are blurry or in complex environmental conditions, may be more difficult to detect accurately. Therefore, in the future we will update again regarding this processing.</string>
+    <string name="topik_bantuan_3_des">This application is an application that displays food recommendations based on the user\'s calorie needs and financial ability, as well as providing data on calorie content and food prices sold by nearby restaurants. Additionally, the app will include object image recognition features for food and the ability to predict caloric content.</string>
+    <string name="topik_bantuan_4_des">Because currently there are only a few datasets available, but in the future we will expand them. We want all food to be included in this application, to help people to improve their bodies.</string>
+    <string name="topik_bantuan_5_des">Because the food recommendations in this application adjust the way users consume their food everyday. This recommendation can be set from the calorie pattern in the profile settings menu.</string>
+
 </resources>

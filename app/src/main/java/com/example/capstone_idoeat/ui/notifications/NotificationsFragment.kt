@@ -26,12 +26,12 @@ class NotificationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
-        binding.rvListNotifications.layoutManager = LinearLayoutManager(requireContext())
-        notificationsViewModel.rvListNotifications.observe(viewLifecycleOwner) {
-            binding.rvListNotifications.adapter = it
-        }
+//        val notificationsViewModel =
+//            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+//        binding.rvListNotifications.layoutManager = LinearLayoutManager(requireContext())
+//        notificationsViewModel.rvListNotifications.observe(viewLifecycleOwner) {
+//            binding.rvListNotifications.adapter = it
+//        }
     }
 
     override fun onDestroyView() {

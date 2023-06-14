@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -17,6 +18,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CAPSTONEIDOEAT"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.profile.bantuan.DetailBantuanActivity5"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.bantuan.DetailBantuanActivity4"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.bantuan.DetailBantuanActivity3"
+            android:exported="false" />
+        <activity
+            android:name=".ui.profile.bantuan.DetailBantuanActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".ui.detail.food.DetailFoodActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.profile.bantuan.DetailBantuanActivity"
             android:exported="false" />

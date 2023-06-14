@@ -40,13 +40,58 @@ class BantuanActivity : AppCompatActivity() {
             tvNama.text = firebaseUser.displayName
         }
 
+        ivKembali.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
         tvBantuan1.setOnClickListener {
             startActivity(Intent(this, DetailBantuanActivity::class.java))
             finish()
         }
 
-        ivKembali.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+        tvBantuan2.setOnClickListener {
+            startActivity(Intent(this, DetailBantuanActivity2::class.java))
+            finish()
+        }
+
+        tvBantuan3.setOnClickListener {
+            startActivity(Intent(this, DetailBantuanActivity3::class.java))
+            finish()
+        }
+
+        tvBantuan4.setOnClickListener {
+            startActivity(Intent(this, DetailBantuanActivity4::class.java))
+            finish()
+        }
+
+        tvBantuan5.setOnClickListener {
+            startActivity(Intent(this, DetailBantuanActivity5::class.java))
+            finish()
+        }
+
+        ivBantuan1.setOnClickListener {
+            startActivity(Intent(this, DetailBantuanActivity::class.java))
+            finish()
+        }
+
+        ivBantuan2.setOnClickListener {
+            startActivity(Intent(this, DetailBantuanActivity2::class.java))
+            finish()
+        }
+
+        ivBantuan3.setOnClickListener {
+            startActivity(Intent(this, DetailBantuanActivity3::class.java))
+            finish()
+        }
+
+        ivBantuan4.setOnClickListener {
+            startActivity(Intent(this, DetailBantuanActivity4::class.java))
+            finish()
+        }
+
+        ivBantuan5.setOnClickListener {
+            startActivity(Intent(this, DetailBantuanActivity5::class.java))
             finish()
         }
 
