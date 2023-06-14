@@ -1,5 +1,6 @@
 package com.example.capstone_idoeat.retrofit
 
+import com.example.capstone_idoeat.model.Rekomendasi
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -17,4 +18,6 @@ interface ApiService {
 //        @Field("password") password: String
 //    ): Call<RegisterResponse>
 
+    @GET("predict")
+    fun getRekomendasi(): Call<Rekomendasi>
 }
