@@ -18,6 +18,9 @@ interface ApiService {
 //        @Field("password") password: String
 //    ): Call<RegisterResponse>
 
-    @GET("predict")
-    fun getRekomendasi(): Call<Rekomendasi>
+    @POST("predict")
+    fun getRekomendasi(): Call<ArrayList<Rekomendasi>>
+
+//    @POST("predict")
+//    fun getRekomendasi(): Call<Rekomendasi>
 }

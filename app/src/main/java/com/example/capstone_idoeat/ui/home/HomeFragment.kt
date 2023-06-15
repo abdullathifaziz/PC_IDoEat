@@ -1,5 +1,6 @@
 package com.example.capstone_idoeat.ui.home
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -36,6 +37,7 @@ class HomeFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var recommendationList: ArrayList<Rekomendasi>
     private lateinit var dbRef: DatabaseReference
+    private lateinit var context: Context
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,8 +67,8 @@ class HomeFragment : Fragment() {
         val recyclerViewHistory = binding.rvHomeHistory
         val recyclerViewRecommendation = binding.rvHomeRecommendation
 
-        val layoutManagerHistory = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        recyclerViewHistory.layoutManager = layoutManagerHistory
+//        val layoutManagerHistory = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+//        recyclerViewHistory.layoutManager = layoutManagerHistory
 
 //        val layoutManagerRecommendation = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 //        recyclerViewRecommendation.layoutManager = layoutManagerRecommendation
@@ -74,10 +76,10 @@ class HomeFragment : Fragment() {
 //        val layoutManagerRecommendation = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 //        recyclerViewRecommendation.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        homeViewModel.rvAdapterList.observe(viewLifecycleOwner) { adapterList ->
-            recyclerViewHistory.adapter = adapterList[0]
-            recyclerViewRecommendation.adapter = adapterList[1]
-        }
+//        homeViewModel.rvAdapterList.observe(viewLifecycleOwner) { adapterList ->
+//            recyclerViewHistory.adapter = adapterList[0]
+//            recyclerViewRecommendation.adapter = adapterList[1]
+//        }
 
         binding.btnFilterRecommendation.setOnClickListener {
             val filterRecommendationFragment = FilterRecommendationFragment()
@@ -97,17 +99,23 @@ class HomeFragment : Fragment() {
 //            startActivity(Intent(activity, DetailFoodActivity::class.java))
 //        }
 
-        dbRef = FirebaseDatabase.getInstance().getReference("datakalori")
+        dbRef = FirebaseDatabase.getInstance("https://datauser2.firebaseio.com/").getReference("datakalori")
+//        dbRef = FirebaseDatabase.getInstance().getReference("datakalori")
         recommendationList = arrayListOf<Rekomendasi>()
 //        recommendationList = arrayListOf()
 
-        getRekomendasiData()
+        recyclerViewHistory.adapter = HomeHistoryListAdapter()
+        binding.rvHomeHistory.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
 
         binding.rvHomeRecommendation.apply {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(activity, 2)
+            layoutManager = GridLayoutManager(requireContext(), 2)
         }
 
+        getRekomendasiData()
 
         preferences = UserPreference(requireContext())
         val calories = preferences.getChosenCalories()
@@ -143,28 +151,35 @@ class HomeFragment : Fragment() {
         binding.tvCountCalories.text = "$caloriesDailyHistory / $CaloriesTarget"
     }
 
-    private fun getRekomendasiData(){
+    //firebase
+    private fun getRekomendasiData() {
         val recyclerViewRecommendation = binding.rvHomeRecommendation
 
-        dbRef.addValueEventListener(object : ValueEventListener{
+        dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 recommendationList.clear()
-                if (snapshot.exists()){
-                    for (rekomSnap in snapshot.children){
+                if (snapshot.exists()) {
+                    for (rekomSnap in snapshot.children) {
                         val rekomData = rekomSnap.getValue(Rekomendasi::class.java)
                         recommendationList.add(rekomData!!)
                     }
-                    val mRekomAdapter = HomeRecommendationListAdapter(recommendationList)
+                    val mRekomAdapter =
+                        HomeRecommendationListAdapter(requireContext(), recommendationList)
                     recyclerViewRecommendation.adapter = mRekomAdapter
 
                     //untuk ke detail makanan
-                    mRekomAdapter.setOnItemClickListener(object : HomeRecommendationListAdapter.onItemClickListener{
+                    mRekomAdapter.setOnItemClickListener(object :
+                        HomeRecommendationListAdapter.onItemClickListener {
                         override fun onItemClick(position: Int) {
 
                             val intent = Intent(activity, DetailFoodActivity::class.java)
 
+                            intent.putExtra("Image", recommendationList[position].Image)
                             intent.putExtra("FoodItem", recommendationList[position].FoodItem)
                             intent.putExtra("Cals_per100grams", recommendationList[position].Cals_per100grams)
+                            intent.putExtra("Price", recommendationList[position].Price)
+                            intent.putExtra("FoodCategory", recommendationList[position].FoodCategory)
+                            intent.putExtra("Link_Toko", recommendationList[position].Link_Toko)
                             startActivity(intent)
 
                         }
