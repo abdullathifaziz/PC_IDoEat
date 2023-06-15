@@ -33,8 +33,11 @@ class FoodScanAdapter(
                 Picasso.get().load(foodItem.Image).into(imgHistory)
                 tvFoodName.text = foodItem.FoodItem
                 tvFoodCategory.text = foodItem.FoodCategory
-                tvFoodCalories.text = foodItem.Cals_per100grams
-//                tvFoodConfidence.text = recognitions[index].confidence.toString()
+                tvFoodCalories.text = foodItem.Cals_per100grams + "/100g"
+                val confidence = recognitions[0].confidence?.times(100) // bermasalah
+                val formattedConfidence = String.format("%.2f%%", confidence)
+                tvFoodConfidence.text = formattedConfidence
+                tvFoodPrice.text = foodItem.Price
             }
         }
     }

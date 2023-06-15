@@ -83,7 +83,7 @@
     <string name="ubah">Ubah</string>
     <string name="des_home_atas">Mari kelola kalori setiap hari</string>
     <string name="deteksi_makanan">Deteksi Makanan</string>
-    <string name="food_name">Nama Makanan</string>
+    <string name="food_name">Makanan yang Sesuai</string>
     <string name="ingredient">Bahan</string>
     <string name="calories">Kalori</string>
     <string name="eat">Makan</string>
@@ -91,9 +91,9 @@
     <string name="atur_pola_kalori">Atur Pola Kalori</string>
     <string name="back">Kembali</string>
     <string name="gender">Gender</string>
-    <string name="weight">Berat Badan</string>
-    <string name="height">Tinggi Badan</string>
-    <string name="age">Umur</string>
+    <string name="weight">Berat Badan dalam kg</string>
+    <string name="height">Tinggi Badan dalam cm</string>
+    <string name="age">Umur dalam satuan tahun</string>
     <string name="hitung_kalori_ideal">Hitung Kalori Ideal</string>
     <string name="cancel">Ulangi</string>
     <string name="save">Simpan</string>
@@ -131,4 +131,5 @@
     <string name="topik_bantuan_3_des">Aplikasi ini merupakan aplikasi yang menampilkan rekomendasi makanan berdasarkan kebutuhan kalori dan kemampuan finansial pengguna, sekaligus menyediakan data kandungan kalori dan harga makanan yang dijual oleh restoran terdekat. Selain itu, aplikasi ini akan menyertakan fitur pengenalan gambar objek untuk makanan dan kemampuan untuk memprediksi konten kalori.</string>
     <string name="topik_bantuan_4_des">Karena dataset yang tersedia untuk saat ini hanya beberapa saja, tetapi untuk kedepannya akan kami perbanyak. Kami ingin semua makanan masuk kedalam aplikasi ini, guna membantu masyarakat untuk memperbaiki badan.</string>
     <string name="topik_bantuan_5_des">Karena rekomendasi makanan di aplikasi ini menyesuaikan dari cara user mengkonsumsi makanannya sehari-hari. Rekomendasi ini bisa diatur dari pola kalori dalam menu pengaturan profile.</string>
+    <string name="scan_result_detection">Hasil yang diperoleh dari deteksi makanan dalam gambar adalah:</string>
 </resources>

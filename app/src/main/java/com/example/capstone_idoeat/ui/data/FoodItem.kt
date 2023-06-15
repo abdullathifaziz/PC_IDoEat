@@ -8,10 +8,11 @@ data class FoodItem(
     val Image: String,
     val KJ_per100grams: String,
     val Link_Toko: String,
+    val Price: String,
     val ProductID: String,
     val UserId: String,
     val per100grams: String,
     val score: Int
 ){
-    constructor() : this("", "", "", "", "", "", "", "", "", 0)
+    constructor() : this("", "", "", "", "", "", "", "", "", "", 0)
 }

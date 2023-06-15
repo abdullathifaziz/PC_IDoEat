@@ -6,8 +6,8 @@
     android:id="@+id/cd_food_scan"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="12dp"
-    android:layout_marginEnd="12dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
     android:layout_marginTop="8dp"
     app:cardCornerRadius="8dp">
 
@@ -28,12 +28,13 @@
 
         <TextView
             android:id="@+id/tv_food_name"
-            android:layout_width="107dp"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="Nasi Goreng"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/tv_food_confidence"
             app:layout_constraintStart_toEndOf="@+id/img_history"
             app:layout_constraintTop_toTopOf="parent" />
 

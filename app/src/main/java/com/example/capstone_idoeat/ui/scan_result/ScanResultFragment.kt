@@ -131,22 +131,23 @@ class ScanResultFragment() : Fragment() {
         val recognitionText = StringBuilder()
         for (result in results) {
             result?.let {
+                val index = results.indexOf(result) + 1
                 val className = it.title
                 val confidence = it.confidence
                 val location = it.location
                 val formattedLocation = "Left: ${location.left}, Top: ${location.top}, Right: ${location.right}, Bottom: ${location.bottom}"
-                val resultString = "$className ${(it.confidence!! * 100).toInt()}%"
-                recognitionText.append(resultString).append(" | ")
+                val resultString = "$index. $className (${(confidence!! * 100).toInt()}%)"
+                recognitionText.append(resultString).append("\n")
             }
         }
-        binding.tvName.text = recognitionText.toString()
+        binding.tvProbability.text = recognitionText.toString()
 
         scanResultViewModel = ViewModelProvider(this).get(ScanResultViewModel::class.java)
         foodScanAdapter = FoodScanAdapter(emptyList(), results as List<Classifier.Recognition>)
 
         binding.rvFoodScanResult.layoutManager = LinearLayoutManager(requireContext())
 
-        val searchTitleFood = if (results[0]?.title != "coin") results[0]?.title else results[1]?.title
+        val searchTitleFood = if (results[0]?.title?.trim() != "chocolate") results[0]?.title else results[1]?.title
         if (searchTitleFood != null) {
             scanResultViewModel.getFilterdFoodList(searchTitleFood,
                 results as List<Classifier.Recognition>
@@ -155,7 +156,6 @@ class ScanResultFragment() : Fragment() {
                 binding.rvFoodScanResult.adapter = foodScanAdapter
             })
         }
-
         return view
     }
 }

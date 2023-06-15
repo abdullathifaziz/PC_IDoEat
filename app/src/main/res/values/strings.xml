@@ -81,15 +81,15 @@
     <string name="ubah">Change</string>
     <string name="des_home_atas">Let\'s manage calories every day</string>
     <string name="deteksi_makanan">Food Detection</string>
-    <string name="food_name">Food name</string>
+    <string name="food_name">Suitable Food</string>
     <string name="ingredient">ingredient</string>
     <string name="calories">Calories</string>
     <string name="eat">Eat</string>
     <string name="atur_pola_kalori">Set Calorie Patterns</string>
     <string name="gender">Gender</string>
-    <string name="weight">Weight</string>
-    <string name="height">Height</string>
-    <string name="age">Age</string>
+    <string name="weight">Weight at kg</string>
+    <string name="height">Height at cm</string>
+    <string name="age">Age at years</string>
     <string name="hitung_kalori_ideal">Calculate the Ideal</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
@@ -127,5 +127,6 @@
     <string name="topik_bantuan_3_des">This application is an application that displays food recommendations based on the user\'s calorie needs and financial ability, as well as providing data on calorie content and food prices sold by nearby restaurants. Additionally, the app will include object image recognition features for food and the ability to predict caloric content.</string>
     <string name="topik_bantuan_4_des">Because currently there are only a few datasets available, but in the future we will expand them. We want all food to be included in this application, to help people to improve their bodies.</string>
     <string name="topik_bantuan_5_des">Because the food recommendations in this application adjust the way users consume their food everyday. This recommendation can be set from the calorie pattern in the profile settings menu.</string>
+    <string name="scan_result_detection">The results obtained from the detection of food in the image are: </string>
 
 </resources>
