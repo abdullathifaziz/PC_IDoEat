@@ -22,7 +22,6 @@ class NotificationsListAdapter: RecyclerView.Adapter<NotificationsListAdapter.Vi
     class ViewHolder(private val binding: ItemHistoryBinding): RecyclerView.ViewHolder(binding.root) {
         fun bindItem() { //tambahkan parameter isi list
             binding.tvFoodName.text = "Nasi Goreng"
-            binding.tvFoodDate.text = "12 Mei 2023"
             binding.tvFoodPrice.text = "Rp. 20.000"
             binding.tvFoodCalories.text = "2000 kalori"
 

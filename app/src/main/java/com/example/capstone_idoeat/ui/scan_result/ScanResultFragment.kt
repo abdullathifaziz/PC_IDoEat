@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstone_idoeat.databinding.FragmentScanResultBinding
 import com.example.capstone_idoeat.object_detection.Classifier
+import com.example.capstone_idoeat.ui.search.SearchFoodAdapter
 
 class ScanResultFragment() : Fragment() {
     private var imageUri: Uri? = null
@@ -139,16 +140,18 @@ class ScanResultFragment() : Fragment() {
             }
         }
         binding.tvName.text = recognitionText.toString()
-        foodScanAdapter = FoodScanAdapter()
+
+        scanResultViewModel = ViewModelProvider(this).get(ScanResultViewModel::class.java)
+        foodScanAdapter = FoodScanAdapter(emptyList())
 
         binding.rvFoodScanResult.layoutManager = LinearLayoutManager(requireContext())
         binding.rvFoodScanResult.adapter = foodScanAdapter
-        scanResultViewModel = ViewModelProvider(this).get(ScanResultViewModel::class.java)
-        scanResultViewModel.searchFoodScan("banana")
-        scanResultViewModel.listFoodResults.observe(viewLifecycleOwner, { scanResults ->
-            foodScanAdapter.setData(scanResults)
+
+        val searchTitleFood: String = "banana"
+        scanResultViewModel.getFilterdFoodList(searchTitleFood).observe(viewLifecycleOwner, {
+            foodScanAdapter = FoodScanAdapter(it)
+            binding.rvFoodScanResult.adapter = foodScanAdapter
         })
-        Log.d("__________________________scanResult", scanResultViewModel.listFoodResults.toString()  )
 
         return view
     }

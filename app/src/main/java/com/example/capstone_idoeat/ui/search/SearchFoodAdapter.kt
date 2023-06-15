@@ -1,4 +1,4 @@
-package com.example.capstone_idoeat.ui.scan_result
+package com.example.capstone_idoeat.ui.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,22 +6,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.capstone_idoeat.databinding.ItemFoodScanBinding
 import com.example.capstone_idoeat.ui.data.FoodItem
 
-class FoodScanAdapter(private val FoodList: List<FoodItem>) : RecyclerView.Adapter<FoodScanAdapter.FoodScanViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodScanViewHolder {
+class SearchFoodAdapter(private val FoodList: List<FoodItem>) : RecyclerView.Adapter<SearchFoodAdapter.FoodSearchViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodSearchViewHolder {
         val itemView = ItemFoodScanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FoodScanViewHolder(itemView)
+        return FoodSearchViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
         return FoodList.size
     }
 
-    override fun onBindViewHolder(holder: FoodScanViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FoodSearchViewHolder, position: Int) {
         val currentItem = FoodList[position]
         holder.bind(currentItem)
     }
 
-    inner class FoodScanViewHolder(private val binding: ItemFoodScanBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class FoodSearchViewHolder(private val binding: ItemFoodScanBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(FoodItem: FoodItem) {
             binding.apply {
                 tvFoodName.text = FoodItem.FoodItem

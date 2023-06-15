@@ -6,6 +6,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -17,13 +18,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.R
 import com.example.capstone_idoeat.databinding.ActivityAturPolaBinding
 import com.example.capstone_idoeat.helper.BaseApplication
 import com.example.capstone_idoeat.helper.UserPreference
 
 class AturPolaActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityAturPolaBinding
     private lateinit var preference: UserPreference
 //    private lateinit var notificationManager: NotificationManagerCompat
@@ -180,6 +181,7 @@ class AturPolaActivity : AppCompatActivity() {
             Toast.makeText(this, "Kalori Ideal tersimpan", Toast.LENGTH_SHORT).show()
 
             sendNotification()
+            recreate()
         })
         alertDialogBuilder.setNegativeButton("Batal", DialogInterface.OnClickListener { dialog, which ->
             dialog.dismiss()
@@ -209,4 +211,7 @@ class AturPolaActivity : AppCompatActivity() {
     }
 
 
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+    }
 }

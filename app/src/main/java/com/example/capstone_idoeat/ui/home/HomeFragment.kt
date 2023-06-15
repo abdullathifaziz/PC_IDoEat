@@ -1,11 +1,11 @@
 package com.example.capstone_idoeat.ui.home
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -16,11 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstone_idoeat.databinding.FragmentHomeBinding
 import com.example.capstone_idoeat.model.Rekomendasi
 import com.example.capstone_idoeat.ui.detail.food.DetailFoodActivity
+import com.example.capstone_idoeat.helper.UserPreference
+import com.example.capstone_idoeat.ui.profile.AturPolaActivity
 import com.example.capstone_idoeat.ui.recommendation.FilterRecommendationFragment
+import com.example.capstone_idoeat.ui.search.SearchFoodActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
 
@@ -31,7 +32,7 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
+    private lateinit var preferences: UserPreference
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var recommendationList: ArrayList<Rekomendasi>
     private lateinit var dbRef: DatabaseReference
@@ -50,7 +51,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val textFullName: TextView = binding.fullName
-//        textFullName.text = "Tfdgdfgfdgfdgdf"
 
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser!=null) {
@@ -108,14 +108,40 @@ class HomeFragment : Fragment() {
             layoutManager = GridLayoutManager(activity, 2)
         }
 
+
+        preferences = UserPreference(requireContext())
+        val calories = preferences.getChosenCalories()
+        if (calories != null) {
+            CaloriesReport(calories.toInt())
+        } else {
+            binding.cdDailyReport.visibility = View.GONE
+            binding.cdToSetting.visibility = View.VISIBLE
+            binding.cdToSetting.setOnClickListener {
+                startActivity(Intent(activity, AturPolaActivity::class.java))
+            }
+        }
+
+        val searchView = binding.svFood
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                val intent = Intent(activity, SearchFoodActivity::class.java)
+                intent.putExtra(SearchFoodActivity.EXTRA_SEARCH, query)
+                startActivity(intent)
+                return true
+            }
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+        })
     }
 
 
-//    private fun menujuLogin() {
-//        Intent(this@HomeFragment, LoginActivity::class.java).also {
-//            startActivity(it)
-//        }
-//    }
+    private fun CaloriesReport(CaloriesTarget: Int) {
+        val caloriesDailyHistory = 1000
+        val caloriesPresentage = caloriesDailyHistory * 100 / CaloriesTarget
+        binding.tvPersentCalories.text = "$caloriesPresentage"
+        binding.tvCountCalories.text = "$caloriesDailyHistory / $CaloriesTarget"
+    }
 
     private fun getRekomendasiData(){
         val recyclerViewRecommendation = binding.rvHomeRecommendation
