@@ -76,8 +76,7 @@ class DetailFoodActivity : AppCompatActivity() {
         val tvResto: TextView = binding.tvRestaurant
         val btnOrder: Button = binding.btnOrder
 
-        Glide.with(this).load("Image").into(ivImageFood)
-//        Picasso.get().load("Image").into(ivImageFood)
+        Picasso.get().load("Image").into(ivImageFood)
         tvName.text = intent.getStringExtra("FoodItem")
         tvCalori.text = intent.getStringExtra("Cals_per100grams")
         tvPrice.text = intent.getStringExtra("Price")

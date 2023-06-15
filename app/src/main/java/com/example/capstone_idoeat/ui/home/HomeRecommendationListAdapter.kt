@@ -195,10 +195,7 @@ class HomeRecommendationListAdapter(private val context: Context, private val re
         val currentRekom = recommendationList[position]
 
         //nek ra picaso
-//        Picasso.get().load(currentRekom.Image).into(holder.ivImageFood)
-//        holder.ivImageFood. = currentRekom.FoodItem
-//        holder.ivImageFood.setImageResource(currentRekom.Image)
-
+        Picasso.get().load(currentRekom.Image).into(holder.ivImageFood)
         //iki gaz nggo glide
 //        Glide.with(context).load(currentRekom.Image).into(holder.ivImageFood)
         holder.tvRecommendationName.text = currentRekom.FoodItem
@@ -213,7 +210,7 @@ class HomeRecommendationListAdapter(private val context: Context, private val re
     }
 
     class ViewHolder(itemView: View, clickListener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
-//        val ivImageFood: ImageView = itemView.findViewById(R.id.iv_image_food)
+        val ivImageFood: ImageView = itemView.findViewById(R.id.iv_recommendation)
         val tvRecommendationName: TextView = itemView.findViewById(R.id.tv_recommendation_name)
         val tvRecommendationCalories: TextView = itemView.findViewById(R.id.tv_recommendation_calories)
         val tvRecommendationPrice: TextView = itemView.findViewById(R.id.tv_recommendation_price)
