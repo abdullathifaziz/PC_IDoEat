@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.capstone_idoeat.databinding.ItemFoodScanBinding
 import com.example.capstone_idoeat.ui.data.FoodItem
 import com.squareup.picasso.Picasso
-class SearchFoodAdapter(private val FoodList: List<FoodItem>) : RecyclerView.Adapter<SearchFoodAdapter.FoodSearchViewHolder>() {
+class SearchFoodAdapter(private val FoodList: List<FoodItem>, private val onItemClick: (String) -> Unit) : RecyclerView.Adapter<SearchFoodAdapter.FoodSearchViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodSearchViewHolder {
         val itemView = ItemFoodScanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FoodSearchViewHolder(itemView)
@@ -28,6 +28,11 @@ class SearchFoodAdapter(private val FoodList: List<FoodItem>) : RecyclerView.Ada
                 tvFoodName.text = FoodItem.FoodItem
                 tvFoodCategory.text = FoodItem.FoodCategory
                 tvFoodCalories.text = FoodItem.Cals_per100grams
+
+                // Mengirim ID item saat card item ditekan
+                itemView.setOnClickListener {
+                    onItemClick(FoodItem.ProductID)
+                }
             }
         }
     }

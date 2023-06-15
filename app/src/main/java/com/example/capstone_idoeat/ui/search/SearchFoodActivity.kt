@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.databinding.ActivitySearchFoodBinding
+import com.example.capstone_idoeat.ui.detail.food.DetailFoodActivity
 
 class SearchFoodActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchFoodBinding
@@ -35,13 +36,21 @@ class SearchFoodActivity : AppCompatActivity() {
         }
 
         searchViewModel = ViewModelProvider(this).get(SearchFoodViewModel::class.java)
-        searchFoodAdapter = SearchFoodAdapter(emptyList())
+        searchFoodAdapter = SearchFoodAdapter(emptyList()) { productId ->
+            val intent = Intent(this, DetailFoodActivity::class.java)
+            intent.putExtra("productId", productId)
+            startActivity(intent)
+        }
 
         binding.rvFood.layoutManager = LinearLayoutManager(this)
         binding.rvFood.adapter = searchFoodAdapter
 
         searchViewModel.getFoodList().observe(this, Observer { foodList ->
-            searchFoodAdapter = SearchFoodAdapter(foodList)
+            searchFoodAdapter = SearchFoodAdapter(foodList) { productId ->
+                val intent = Intent(this, DetailFoodActivity::class.java)
+                intent.putExtra("productId", productId)
+                startActivity(intent)
+            }
             binding.rvFood.adapter = searchFoodAdapter
         })
 

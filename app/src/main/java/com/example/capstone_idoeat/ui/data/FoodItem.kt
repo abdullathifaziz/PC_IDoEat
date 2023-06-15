@@ -1,7 +1,6 @@
 package com.example.capstone_idoeat.ui.data
 
 data class FoodItem(
-
     val Cals_per100grams: String,
     val FoodCategory: String,
     val FoodItem: String,

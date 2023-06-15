@@ -180,6 +180,7 @@ class HomeFragment : Fragment() {
                             intent.putExtra("Price", recommendationList[position].Price)
                             intent.putExtra("FoodCategory", recommendationList[position].FoodCategory)
                             intent.putExtra("Link_Toko", recommendationList[position].Link_Toko)
+                            intent.putExtra("productId", recommendationList[position].ProductID)
                             startActivity(intent)
 
                         }
