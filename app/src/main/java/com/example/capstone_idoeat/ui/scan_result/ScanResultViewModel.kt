@@ -4,40 +4,38 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.capstone_idoeat.object_detection.Classifier
 import com.example.capstone_idoeat.ui.data.FoodItem
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 class ScanResultViewModel : ViewModel() {
-        private val filteredFoodList: MutableLiveData<List<FoodItem>> = MutableLiveData()
-
-        fun getFilterdFoodList(query: String): MutableLiveData<List<FoodItem>> {
-            searchFood(query)
-            return filteredFoodList
-        }
-
-        private fun searchFood(query: String) {
-            val ref = FirebaseDatabase.getInstance("https://datauser2.firebaseio.com/datakalori").reference
-            ref.orderByChild("name")
-                .startAt(query)
-                .endAt(query + "\uf8ff")
-                .addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val items: MutableList<FoodItem> = mutableListOf()
-                        for (dataSnapshot in snapshot.children) {
-                            val foodItem = dataSnapshot.getValue(FoodItem::class.java)
-                            foodItem?.let {
-                                items.add(it)
-                            }
-                        }
-                        filteredFoodList.value = items
-                        Log.d("SearchFoodViewModel", "loadFoodList: $items")
+    fun getFilterdFoodList(searchTitleFood: String, results: List<Classifier.Recognition>): LiveData<List<FoodItem>> {
+        val filteredFoodList: MutableLiveData<List<FoodItem>> = MutableLiveData()
+        val ref = FirebaseDatabase.getInstance("https://datauser2.firebaseio.com/").reference.child("datakalori")
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val items: MutableList<FoodItem> = mutableListOf()
+                for (dataSnapshot in snapshot.children) {
+                    val foodItem = dataSnapshot.getValue(FoodItem::class.java)
+                    foodItem?.let {
+                        items.add(it)
                     }
+                }
+                val filteredItems = items.filter { foodItem ->
+                    // Lakukan filter berdasarkan kriteria yang sesuai dengan query
+                    foodItem.FoodItem.toLowerCase().contains(searchTitleFood.toLowerCase().trim()) ||
+                            foodItem.FoodCategory.toLowerCase().contains(searchTitleFood.toLowerCase().trim())
+                    // Anda dapat menambahkan kriteria filter lainnya sesuai dengan kebutuhan
+                }
+                filteredFoodList.value = filteredItems
+                Log.d("SearchFoodViewModel", "loadFoodList: $filteredItems")
+            }
 
-                    override fun onCancelled(error: DatabaseError) {
-                        // Handle database error here
-                    }
-                })
-        }
+            override fun onCancelled(error: DatabaseError) {
+                // Handle database error here
+            }
+        })
+
+        return filteredFoodList
     }
+}

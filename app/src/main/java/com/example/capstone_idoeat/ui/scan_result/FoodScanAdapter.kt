@@ -4,9 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.capstone_idoeat.databinding.ItemFoodScanBinding
+import com.example.capstone_idoeat.object_detection.Classifier
 import com.example.capstone_idoeat.ui.data.FoodItem
+import com.squareup.picasso.Picasso
 
-class FoodScanAdapter(private val FoodList: List<FoodItem>) : RecyclerView.Adapter<FoodScanAdapter.FoodScanViewHolder>() {
+class FoodScanAdapter(
+    private val FoodList: List<FoodItem>,
+    private val recognitions: List<Classifier.Recognition>
+) : RecyclerView.Adapter<FoodScanAdapter.FoodScanViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodScanViewHolder {
         val itemView = ItemFoodScanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return FoodScanViewHolder(itemView)
@@ -21,12 +26,15 @@ class FoodScanAdapter(private val FoodList: List<FoodItem>) : RecyclerView.Adapt
         holder.bind(currentItem)
     }
 
+
     inner class FoodScanViewHolder(private val binding: ItemFoodScanBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(FoodItem: FoodItem) {
+        fun bind(foodItem: FoodItem) {
             binding.apply {
-                tvFoodName.text = FoodItem.FoodItem
-                tvFoodCategory.text = FoodItem.FoodCategory
-                tvFoodCalories.text = FoodItem.Cals_per100grams
+                Picasso.get().load(foodItem.Image).into(imgHistory)
+                tvFoodName.text = foodItem.FoodItem
+                tvFoodCategory.text = foodItem.FoodCategory
+                tvFoodCalories.text = foodItem.Cals_per100grams
+//                tvFoodConfidence.text = recognitions[index].confidence.toString()
             }
         }
     }

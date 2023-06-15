@@ -49,7 +49,6 @@ class SearchFoodActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
             }
-
             override fun onQueryTextChange(newText: String): Boolean {
                 searchViewModel.searchFood(newText)
                 return true

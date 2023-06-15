@@ -10,11 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstone_idoeat.databinding.FragmentScanResultBinding
 import com.example.capstone_idoeat.object_detection.Classifier
-import com.example.capstone_idoeat.ui.search.SearchFoodAdapter
 
 class ScanResultFragment() : Fragment() {
     private var imageUri: Uri? = null
@@ -135,23 +135,26 @@ class ScanResultFragment() : Fragment() {
                 val confidence = it.confidence
                 val location = it.location
                 val formattedLocation = "Left: ${location.left}, Top: ${location.top}, Right: ${location.right}, Bottom: ${location.bottom}"
-                val resultString = "$className - $confidence"
-                recognitionText.append(resultString).append("\n")
+                val resultString = "$className ${(it.confidence!! * 100).toInt()}%"
+                recognitionText.append(resultString).append(" | ")
             }
         }
         binding.tvName.text = recognitionText.toString()
 
         scanResultViewModel = ViewModelProvider(this).get(ScanResultViewModel::class.java)
-        foodScanAdapter = FoodScanAdapter(emptyList())
+        foodScanAdapter = FoodScanAdapter(emptyList(), results as List<Classifier.Recognition>)
 
         binding.rvFoodScanResult.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvFoodScanResult.adapter = foodScanAdapter
 
-        val searchTitleFood: String = "banana"
-        scanResultViewModel.getFilterdFoodList(searchTitleFood).observe(viewLifecycleOwner, {
-            foodScanAdapter = FoodScanAdapter(it)
-            binding.rvFoodScanResult.adapter = foodScanAdapter
-        })
+        val searchTitleFood = if (results[0]?.title != "coin") results[0]?.title else results[1]?.title
+        if (searchTitleFood != null) {
+            scanResultViewModel.getFilterdFoodList(searchTitleFood,
+                results as List<Classifier.Recognition>
+            ).observe(viewLifecycleOwner, Observer { foodList ->
+                foodScanAdapter = FoodScanAdapter(foodList, results as List<Classifier.Recognition>)
+                binding.rvFoodScanResult.adapter = foodScanAdapter
+            })
+        }
 
         return view
     }

@@ -1,14 +1,10 @@
 package com.example.capstone_idoeat.ui.search
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.capstone_idoeat.ui.data.FoodItem
-import com.example.capstone_idoeat.ui.notifications.NotificationsListAdapter
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 class SearchFoodViewModel : ViewModel() {
     private val originalFoodList: MutableLiveData<List<FoodItem>> = MutableLiveData()
