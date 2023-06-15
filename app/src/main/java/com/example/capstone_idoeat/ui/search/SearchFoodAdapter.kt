@@ -28,6 +28,7 @@ class SearchFoodAdapter(private val FoodList: List<FoodItem>, private val onItem
                 tvFoodName.text = FoodItem.FoodItem
                 tvFoodCategory.text = FoodItem.FoodCategory
                 tvFoodCalories.text = FoodItem.Cals_per100grams
+                tvFoodPrice.text = FoodItem.Price
 
                 // Mengirim ID item saat card item ditekan
                 itemView.setOnClickListener {

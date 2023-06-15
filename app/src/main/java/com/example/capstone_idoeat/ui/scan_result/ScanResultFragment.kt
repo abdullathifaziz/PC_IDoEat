@@ -1,5 +1,6 @@
 package com.example.capstone_idoeat.ui.scan_result
 
+import android.content.Intent
 import android.graphics.*
 import android.net.Uri
 import android.os.Bundle
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstone_idoeat.databinding.FragmentScanResultBinding
 import com.example.capstone_idoeat.object_detection.Classifier
+import com.example.capstone_idoeat.ui.detail.food.DetailFoodActivity
 
 class ScanResultFragment() : Fragment() {
     private var imageUri: Uri? = null
@@ -148,7 +150,11 @@ class ScanResultFragment() : Fragment() {
         }
 
         scanResultViewModel = ViewModelProvider(this).get(ScanResultViewModel::class.java)
-        foodScanAdapter = FoodScanAdapter(emptyList(), results as List<Classifier.Recognition>)
+        foodScanAdapter = FoodScanAdapter(emptyList(), results as List<Classifier.Recognition>,{
+            val intent = Intent(requireContext(), DetailFoodActivity::class.java)
+            intent.putExtra("productId", it)
+            startActivity(intent)
+        })
 
         binding.rvFoodScanResult.layoutManager = LinearLayoutManager(requireContext())
 
@@ -161,7 +167,11 @@ class ScanResultFragment() : Fragment() {
             scanResultViewModel.getFilterdFoodList(searchTitleFood,
                 results as List<Classifier.Recognition>
             ).observe(viewLifecycleOwner, Observer { foodList ->
-                foodScanAdapter = FoodScanAdapter(foodList, results as List<Classifier.Recognition>)
+                foodScanAdapter = FoodScanAdapter(foodList, results as List<Classifier.Recognition>,{
+                    val intent = Intent(requireContext(), DetailFoodActivity::class.java)
+                    intent.putExtra("productId", it)
+                    startActivity(intent)
+                })
                 binding.rvFoodScanResult.adapter = foodScanAdapter
             })
         }

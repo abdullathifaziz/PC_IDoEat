@@ -10,7 +10,8 @@ import com.squareup.picasso.Picasso
 
 class FoodScanAdapter(
     private val FoodList: List<FoodItem>,
-    private val recognitions: List<Classifier.Recognition>
+    private val recognitions: List<Classifier.Recognition>,
+    private val onItemClick: (String) -> Unit
 ) : RecyclerView.Adapter<FoodScanAdapter.FoodScanViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodScanViewHolder {
         val itemView = ItemFoodScanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -40,6 +41,11 @@ class FoodScanAdapter(
                     tvFoodConfidence.text = ""
                 }
                 tvFoodPrice.text = foodItem.Price
+
+                // Mengirim ID item saat card item ditekan
+                itemView.setOnClickListener {
+                    onItemClick(foodItem.ProductID)
+                }
             }
         }
     }
