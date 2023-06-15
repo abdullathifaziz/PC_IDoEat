@@ -21,11 +21,16 @@ class ScanResultViewModel : ViewModel() {
                         items.add(it)
                     }
                 }
-                val filteredItems = items.filter { foodItem ->
-                    // Lakukan filter berdasarkan kriteria yang sesuai dengan query
-                    foodItem.FoodItem.toLowerCase().contains(searchTitleFood.toLowerCase().trim()) ||
-                            foodItem.FoodCategory.toLowerCase().contains(searchTitleFood.toLowerCase().trim())
-                    // Anda dapat menambahkan kriteria filter lainnya sesuai dengan kebutuhan
+                val filteredItems = if (searchTitleFood == "") {
+                    // Jika searchTitleFood null atau kosong, mengembalikan semua data
+                    items
+                } else {
+                    items.filter { foodItem ->
+                        // Lakukan filter berdasarkan kriteria yang sesuai dengan query
+                        foodItem.FoodItem.toLowerCase().contains(searchTitleFood.toLowerCase().trim()) ||
+                                foodItem.FoodCategory.toLowerCase().contains(searchTitleFood.toLowerCase().trim())
+                        // Anda dapat menambahkan kriteria filter lainnya sesuai dengan kebutuhan
+                    }
                 }
                 filteredFoodList.value = filteredItems
                 Log.d("SearchFoodViewModel", "loadFoodList: $filteredItems")

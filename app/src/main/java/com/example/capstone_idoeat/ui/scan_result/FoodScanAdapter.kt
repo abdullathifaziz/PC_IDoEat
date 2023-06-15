@@ -34,9 +34,11 @@ class FoodScanAdapter(
                 tvFoodName.text = foodItem.FoodItem
                 tvFoodCategory.text = foodItem.FoodCategory
                 tvFoodCalories.text = foodItem.Cals_per100grams + "/100g"
-                val confidence = recognitions[0].confidence?.times(100) // bermasalah
-                val formattedConfidence = String.format("%.2f%%", confidence)
-                tvFoodConfidence.text = formattedConfidence
+                if (recognitions.isNotEmpty()) {
+                    tvFoodConfidence.text = String.format("%.2f%%", recognitions[0].confidence?.times(100))
+                } else {
+                    tvFoodConfidence.text = ""
+                }
                 tvFoodPrice.text = foodItem.Price
             }
         }
