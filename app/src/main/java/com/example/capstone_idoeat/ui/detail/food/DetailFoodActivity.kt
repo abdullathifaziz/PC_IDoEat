@@ -1,28 +1,31 @@
 package com.example.capstone_idoeat.ui.detail.food
 
+import android.content.DialogInterface
 import android.content.Intent
-import android.media.Image
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.databinding.ActivityDetailFoodBinding
 import com.example.capstone_idoeat.helper.UserPreference
-import com.example.capstone_idoeat.model.Rekomendasi
 import com.example.capstone_idoeat.ui.data.FoodItem
+import com.example.capstone_idoeat.ui.history.UserHistory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
+import java.util.*
 
 class DetailFoodActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailFoodBinding
-//    val firebaseAuth = FirebaseAuth.getInstance()
+    private val firebaseAuth = FirebaseAuth.getInstance()
     private lateinit var preference: UserPreference
 //    private lateinit var rekomendasiList: ArrayList<Rekomendasi>
 //    private lateinit var dbRef: DatabaseReference
@@ -61,7 +64,12 @@ class DetailFoodActivity : AppCompatActivity() {
             setViewById(intent.getStringExtra("productId").toString())
         }
 
-
+        binding.btnEat.setOnClickListener {
+            val measure = binding.etMeasure.text.toString().toInt()
+            val calories100gram = intent.getStringExtra("Cals_per100grams").toString()
+            val caloriesOnlyDigits = calories100gram.replace(Regex("[^\\d]"), "").toInt()
+            showMeasureDialog(measure, caloriesOnlyDigits)
+        }
 
 
         //        supportActionBar!!.setTitle(Html.fromHtml("<font color=\"#6C4AB6\">"+getString(R.string.back_bantuan)+"</font>"))
@@ -127,5 +135,29 @@ class DetailFoodActivity : AppCompatActivity() {
                 Log.e("FirebaseError", databaseError.message)
             }
         })
+    }
+    private fun pushHistoryDatabase(totalCalories: String) {
+        val database: FirebaseDatabase = FirebaseDatabase.getInstance("https://datauser2.firebaseio.com/")
+        val reference: DatabaseReference = database.reference.child("datahistory")
+        val uid = firebaseAuth.currentUser?.uid.toString()
+        val productId = intent.getStringExtra("productId").toString()
+        val date: Date = Calendar.getInstance().time
+        val userHistory = UserHistory(productId, date.toString(), totalCalories)
+        reference.child(uid).push().setValue(userHistory)
+    }
+
+    private fun showMeasureDialog(measure: Int, foodCalories: Int) {
+        val alertDialogBuilder = AlertDialog.Builder(this)
+        val totalCalories = measure*foodCalories
+        alertDialogBuilder.setTitle("Banyaknya Kalori pada Makananmu Adalah $totalCalories Kalori")
+        alertDialogBuilder.setMessage("Apakah Anda ingin mencatat masukan kalori ini?")
+        alertDialogBuilder.setPositiveButton("Simpan", DialogInterface.OnClickListener { dialog, which ->
+            pushHistoryDatabase(totalCalories.toString())
+            Toast.makeText(this, "Kalori Ideal tersimpan", Toast.LENGTH_SHORT).show()
+        })
+        alertDialogBuilder.setNegativeButton("Batal", DialogInterface.OnClickListener { dialog, which ->
+            dialog.dismiss()
+        })
+        alertDialogBuilder.show()
     }
 }

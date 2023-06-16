@@ -13,20 +13,24 @@ import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.R
 import com.example.capstone_idoeat.databinding.ActivityRiwayatKaloriBinding
 import com.example.capstone_idoeat.helper.UserPreference
+import com.example.capstone_idoeat.ui.detail.food.DetailFoodActivity
 import com.example.capstone_idoeat.ui.profile.riwayat.RiwayatListAdapter
 import com.example.capstone_idoeat.ui.profile.riwayat.RiwayatViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class RiwayatKaloriActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRiwayatKaloriBinding
     private lateinit var preference: UserPreference
+    private lateinit var viewModel : RiwayatViewModel
+    private lateinit var adapter: RiwayatListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_riwayat_kalori)
-
         binding = ActivityRiwayatKaloriBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         preference = UserPreference(this)
 
@@ -38,26 +42,26 @@ class RiwayatKaloriActivity : AppCompatActivity() {
             finish()
         }
 
-        val riwayatViewModel =
-            ViewModelProvider(this).get(RiwayatViewModel::class.java)
+        adapter = RiwayatListAdapter(emptyList()) { productId ->
+            val intent = Intent(this, DetailFoodActivity::class.java)
+            intent.putExtra("productId", productId)
+            startActivity(intent)
+        }
+
         binding.rvListRiwayat.layoutManager = LinearLayoutManager(this)
-//        riwayatViewModel.rvListRiwayat.observe(viewLifecycleOwner) {
-//            binding.rvListRiwayat.adapter = it
-//        }
-//            binding.rvListRiwayat.adapter = it
+        binding.rvListRiwayat.adapter = adapter
 
-        val mRiwayatAdapter = RiwayatListAdapter()
-        recyclerViewRiwayat.adapter = mRiwayatAdapter
+        val uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
+        viewModel = ViewModelProvider(this).get(RiwayatViewModel::class.java)
+        viewModel.getHistoryUserFood(uid)?.observe(this, {
+            adapter = RiwayatListAdapter(it) { productId ->
+                val intent = Intent(this, DetailFoodActivity::class.java)
+                intent.putExtra("productId", productId)
+                startActivity(intent)
+            }
+            recyclerViewRiwayat.adapter = adapter
+        })
+        binding.rvListRiwayat.layoutManager = LinearLayoutManager(this)
 
-
-//        supportActionBar!!.setTitle(Html.fromHtml("<font color=\"#6C4AB6\">"+getString(R.string.back_riwayat)+"</font>"))
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        supportActionBar?.title = "Riwayat Harian"
-        supportActionBar?.hide()
     }
-
-//    override fun onSupportNavigateUp(): Boolean {
-//        onBackPressed()
-//        return true
-//    }
 }

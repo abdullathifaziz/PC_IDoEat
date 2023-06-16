@@ -84,7 +84,7 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/poppinsmedium"
                     android:text="Category"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textColor="@color/cp_1" />
 
                 <TextView
@@ -141,7 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppinsmedium"
-                        android:text="Komposisi"
+                        android:text="Mitra"
                         android:textColor="#8D72E1"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -152,7 +152,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppinsmedium"
-                        android:text="Nasi, Ayam, Sayur"
+                        android:text=""
                         android:textColor="#8D72E1"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_description_title"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -162,7 +162,7 @@
 
                 <ImageView
                     android:id="@+id/iv_tokopedia"
-                    android:layout_width="50dp"
+                    android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:src="@drawable/logo_tokopedia"
                     android:contentDescription="tokopedia"
@@ -174,12 +174,51 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_detail_bottom_control"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        android:orientation="horizontal">
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsmedium"
+                android:text="Measure the food you eat"
+                />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/et_measure"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsmedium"
+                android:background="@drawable/kotak_stroke"
+                android:textSize="12sp"
+                android:hint="x100 gram"
+                android:textAlignment="center"
+                android:padding="5dp"
+                android:inputType="numberDecimal"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_order"
@@ -199,7 +238,7 @@
 
         <Button
             android:id="@+id/btn_eat"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:background="@drawable/bg_order_btn"
@@ -207,9 +246,9 @@
             android:paddingEnd="32dp"
             android:text="Eat"
             android:textColor="@android:color/white" />
+        </LinearLayout>
 
     </LinearLayout>
-
 </RelativeLayout>
 
 
