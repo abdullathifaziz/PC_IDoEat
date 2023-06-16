@@ -12,9 +12,9 @@
     <string name="title_onb_1">Maintain your daily calories</string>
     <string name="title_onb_2">A healthy diet is a good personality trait</string>
     <string name="title_onb_3">Always Provides Best Recommendations</string>
-    <string name="des_onb_1">Easy to manage your daily food in a standard of the recommendations</string>
-    <string name="des_onb_2">Easy to manage your daily food in a standard of the recommendations</string>
-    <string name="des_onb_3">Easy to manage your daily food in a standard of the recommendations</string>
+    <string name="des_onb_1">Maintain daily calories for the body in daily life to be up to standard.</string>
+    <string name="des_onb_2">Consuming healthy and correct food can make our body more fit.</string>
+    <string name="des_onb_3">The recommendations we provide are an overview of the foods you consume daily.</string>
     <string name="btn_onb_1_lewati">Skip</string>
     <string name="btn_onb_1_lanjut">Next</string>
     <string name="btn_onb_2_kembali">Back</string>
@@ -128,5 +128,8 @@
     <string name="topik_bantuan_4_des">Because currently there are only a few datasets available, but in the future we will expand them. We want all food to be included in this application, to help people to improve their bodies.</string>
     <string name="topik_bantuan_5_des">Because the food recommendations in this application adjust the way users consume their food everyday. This recommendation can be set from the calorie pattern in the profile settings menu.</string>
     <string name="scan_result_detection">The results obtained from the detection of food in the image are: </string>
+    <string name="title_notif">No Notification</string>
+    <string name="measure_the_food">Measure the food you eat</string>
+    <string name="pengeluaran">Spending: Rp177.000</string>
 
 </resources>

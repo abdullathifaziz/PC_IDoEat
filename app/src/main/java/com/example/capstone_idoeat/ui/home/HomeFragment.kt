@@ -1,5 +1,6 @@
 package com.example.capstone_idoeat.ui.home
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -69,7 +70,7 @@ class HomeFragment : Fragment() {
 
 
         // INFO: recycleView riwayat dan rekomendasi makanan
-        val recyclerViewHistory = binding.rvHomeHistory
+//        val recyclerViewHistory = binding.rvHomeHistory
         val recyclerViewRecommendation = binding.rvHomeRecommendation
 
 //        val layoutManagerHistory = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -109,11 +110,11 @@ class HomeFragment : Fragment() {
         recommendationList = arrayListOf<Rekomendasi>()
 //        recommendationList = arrayListOf()
 
-        recyclerViewHistory.adapter = HomeHistoryListAdapter()
-        binding.rvHomeHistory.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        }
+//        recyclerViewHistory.adapter = HomeHistoryListAdapter()
+//        binding.rvHomeHistory.apply {
+//            setHasFixedSize(true)
+//            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+//        }
 
         binding.rvHomeRecommendation.apply {
             setHasFixedSize(true)
@@ -153,16 +154,17 @@ class HomeFragment : Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun CaloriesReport(CaloriesTarget: Int, dataRiwayat: LiveData<List<HistoryItem>>?) {
 
-        var totalCalories = 0
+        var totalCalories = 1500
 
         dataRiwayat?.value?.forEach { historyItem ->
-            Log.d("______________________totalCalories", historyItem.totalCalories.toString())
+            Log.d("totalCalories", historyItem.totalCalories)
             totalCalories += historyItem.totalCalories.toInt()
         }
 
-        val caloriesPercentage = totalCalories.toDouble() * 100 / CaloriesTarget
+        val caloriesPercentage = totalCalories * 100 / CaloriesTarget
         binding.tvPersentCalories.text = "$caloriesPercentage"
         binding.tvCountCalories.text = "$totalCalories / $CaloriesTarget"
     }

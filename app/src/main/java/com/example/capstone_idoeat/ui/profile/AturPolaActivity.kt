@@ -82,22 +82,23 @@ class AturPolaActivity : AppCompatActivity() {
             cardView.visibility = View.GONE // Sembunyikan CardView
         }
 
-        createNotification()
+//        createNotification()
     }
 
-    private fun createNotification(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "Pola Kalori"
-            val descriptionText = "Data Kalori Ideal Yang Baru Telah Ditambahkan"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                description = descriptionText
-            }
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
+    // untuk sementara notifikasi tidak dipakai
+//    private fun createNotification(){
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val name = "Pola Kalori"
+//            val descriptionText = "Data Kalori Ideal Yang Baru Telah Ditambahkan"
+//            val importance = NotificationManager.IMPORTANCE_DEFAULT
+//            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+//                description = descriptionText
+//            }
+//            val notificationManager: NotificationManager =
+//                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//            notificationManager.createNotificationChannel(channel)
+//        }
+//    }
 
     private fun hitungKaloriIdeal() {
         val gender = getGender()
@@ -179,8 +180,7 @@ class AturPolaActivity : AppCompatActivity() {
         alertDialogBuilder.setPositiveButton("Simpan", DialogInterface.OnClickListener { dialog, which ->
             preference.setChosenCalories(kaloriIdeal)
             Toast.makeText(this, "Kalori Ideal tersimpan", Toast.LENGTH_SHORT).show()
-
-            sendNotification()
+//            sendNotification()
             recreate()
         })
         alertDialogBuilder.setNegativeButton("Batal", DialogInterface.OnClickListener { dialog, which ->
@@ -190,25 +190,26 @@ class AturPolaActivity : AppCompatActivity() {
     }
 
 
-    private fun sendNotification(){
-        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.logo_idoeat)
-            .setContentTitle("I DO EAT")
-            .setContentText("Data Kalori Ideal Yang Baru Telah Ditambahkan")
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-
-        with(NotificationManagerCompat.from(this)){
-            if (ActivityCompat.checkSelfPermission(
-                    this@AturPolaActivity,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                return
-            }
-            notify(notificationid, builder.build())
-        }
-    }
+    // untuk sementara notifikasi tidak dipakai
+//    private fun sendNotification(){
+//        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+//            .setSmallIcon(R.drawable.logo_idoeat)
+//            .setContentTitle("I DO EAT")
+//            .setContentText("Data Kalori Ideal Yang Baru Telah Ditambahkan")
+//            .setPriority(NotificationCompat.PRIORITY_HIGH)
+//            .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+//
+//        with(NotificationManagerCompat.from(this)){
+//            if (ActivityCompat.checkSelfPermission(
+//                    this@AturPolaActivity,
+//                    Manifest.permission.POST_NOTIFICATIONS
+//                ) != PackageManager.PERMISSION_GRANTED
+//            ) {
+//                return
+//            }
+//            notify(notificationid, builder.build())
+//        }
+//    }
 
 
     override fun onBackPressed() {

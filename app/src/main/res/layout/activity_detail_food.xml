@@ -193,7 +193,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsmedium"
-                android:text="Measure the food you eat"
+                android:text="@string/measure_the_food"
                 />
             <Space
                 android:layout_width="0dp"

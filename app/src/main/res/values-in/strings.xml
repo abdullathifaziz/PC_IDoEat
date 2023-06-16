@@ -13,9 +13,9 @@
     <string name="title_onb_1">Jaga kalori harian Anda</string>
     <string name="title_onb_2">Pola makan sehat ciri pribadi yang baik</string>
     <string name="title_onb_3">Selalu Menberikan Rekomendasi Terbaik</string>
-    <string name="des_onb_1">Easy to manage your daily food in a standard of the recommendations</string>
-    <string name="des_onb_2">Easy to manage your daily food in a standard of the recommendations</string>
-    <string name="des_onb_3">Easy to manage your daily food in a standard of the recommendations</string>
+    <string name="des_onb_1">Menjaga kalori harian untuk tubuh dalam kehidupan sehari-hari agar sesuai standar.</string>
+    <string name="des_onb_2">Mengkonsumsi makanan yang sehat dan benar dapat menjadikan tubuh kita semakin bugar.</string>
+    <string name="des_onb_3">Rekomendasi yang kami berikan merupakan gambaran dari makanan yang anda konsumsi sehari-hari.</string>
     <string name="btn_onb_1_lewati">Lewati</string>
     <string name="btn_onb_1_lanjut">Lanjut</string>
     <string name="btn_onb_2_kembali">Kembali</string>
@@ -132,4 +132,7 @@
     <string name="topik_bantuan_4_des">Karena dataset yang tersedia untuk saat ini hanya beberapa saja, tetapi untuk kedepannya akan kami perbanyak. Kami ingin semua makanan masuk kedalam aplikasi ini, guna membantu masyarakat untuk memperbaiki badan.</string>
     <string name="topik_bantuan_5_des">Karena rekomendasi makanan di aplikasi ini menyesuaikan dari cara user mengkonsumsi makanannya sehari-hari. Rekomendasi ini bisa diatur dari pola kalori dalam menu pengaturan profile.</string>
     <string name="scan_result_detection">Hasil yang diperoleh dari deteksi makanan dalam gambar adalah:</string>
+    <string name="title_notif">Belum Ada Pemberitahuan</string>
+    <string name="measure_the_food">Ukur makanan yang anda makan</string>
+    <string name="pengeluaran">Pengeluaran: Rp177.000</string>
 </resources>
