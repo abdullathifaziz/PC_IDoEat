@@ -16,7 +16,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.capstone_idoeat.databinding.FragmentHomeBinding
 import com.example.capstone_idoeat.model.Rekomendasi
 import com.example.capstone_idoeat.ui.detail.food.DetailFoodActivity
@@ -33,13 +32,8 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val firebaseAuth = FirebaseAuth.getInstance()
-//    val firebase : FirebaseDatabase = FirebaseDatabase.getInstance()
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     private lateinit var preferences: UserPreference
-    private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var riwayatViewModel: RiwayatViewModel
     private lateinit var recommendationList: ArrayList<Rekomendasi>
     private lateinit var dbRef: DatabaseReference
@@ -64,28 +58,9 @@ class HomeFragment : Fragment() {
         if (firebaseUser!=null) {
             textFullName.text = firebaseUser.displayName
         }
-//        } else {
-//            menujuLogin()
-//        }
-
 
         // INFO: recycleView riwayat dan rekomendasi makanan
-//        val recyclerViewHistory = binding.rvHomeHistory
         val recyclerViewRecommendation = binding.rvHomeRecommendation
-
-//        val layoutManagerHistory = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//        recyclerViewHistory.layoutManager = layoutManagerHistory
-
-//        val layoutManagerRecommendation = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//        recyclerViewRecommendation.layoutManager = layoutManagerRecommendation
-
-//        val layoutManagerRecommendation = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//        recyclerViewRecommendation.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-
-//        homeViewModel.rvAdapterList.observe(viewLifecycleOwner) { adapterList ->
-//            recyclerViewHistory.adapter = adapterList[0]
-//            recyclerViewRecommendation.adapter = adapterList[1]
-//        }
 
         binding.btnFilterRecommendation.setOnClickListener {
             val filterRecommendationFragment = FilterRecommendationFragment()
@@ -100,21 +75,8 @@ class HomeFragment : Fragment() {
                 .commit()
         }
 
-
-//        recyclerViewRecommendation.setOnClickListener {
-//            startActivity(Intent(activity, DetailFoodActivity::class.java))
-//        }
-
         dbRef = FirebaseDatabase.getInstance("https://datauser2.firebaseio.com/").getReference("datakalori")
-//        dbRef = FirebaseDatabase.getInstance().getReference("datakalori")
         recommendationList = arrayListOf<Rekomendasi>()
-//        recommendationList = arrayListOf()
-
-//        recyclerViewHistory.adapter = HomeHistoryListAdapter()
-//        binding.rvHomeHistory.apply {
-//            setHasFixedSize(true)
-//            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//        }
 
         binding.rvHomeRecommendation.apply {
             setHasFixedSize(true)

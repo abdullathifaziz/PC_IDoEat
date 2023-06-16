@@ -68,35 +68,4 @@ class RiwayatViewModel : ViewModel() {
         })
         return historyUser
     }
-
-//    fun getHistoryFood(productId: String): LiveData<List<FoodItem>> {
-//        val historyFood: MutableLiveData<List<FoodItem>> = MutableLiveData()
-//        val ref = FirebaseDatabase.getInstance("https://datauser2.firebaseio.com/").reference.child("datafood")
-//        ref.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                val items: MutableList<FoodItem> = mutableListOf()
-//                for (dataSnapshot in snapshot.children) {
-//                    val FoodItem = dataSnapshot.getValue(FoodItem::class.java)
-//                    FoodItem?.let {
-//                        items.add(it)
-//                    }
-//                    items.forEach { food ->
-//                        history.forEach { history ->
-//                            if (food.ProductID == history.productId) {
-//                                items.add(food)
-//                            }
-//                        }
-//                    }
-//                    historyFood.value = items
-//                    Log.d("________+++History", "loadFoodList: $items")
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                // Handle database error here
-//            }
-//        })
-//
-//        return historyFood
-//    }
 }

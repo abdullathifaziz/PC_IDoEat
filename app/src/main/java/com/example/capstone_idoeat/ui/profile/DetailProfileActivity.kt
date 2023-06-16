@@ -52,7 +52,6 @@ class DetailProfileActivity : AppCompatActivity() {
         val ivPhoto: ImageView = binding.ivProfileFoto
         val edNama: EditText = binding.edNama
         val tvEmail: TextView = binding.tvEmail
-//        val ivSimpan: ImageView = binding.ivSimpanProfile
         val btnSimpan: Button = binding.btnSimpan
         val ivKembali: ImageView = binding.ivBack
 
@@ -66,10 +65,6 @@ class DetailProfileActivity : AppCompatActivity() {
 
             edNama.setText(firebaseUser.displayName)
             tvEmail.text = firebaseUser.email
-
-
-//            edNama.text = firebaseUser.displayName
-//            edEmail.text = firebaseUser.email
         }
 
         ivKembali.setOnClickListener {
@@ -84,7 +79,6 @@ class DetailProfileActivity : AppCompatActivity() {
 
         btnSimpan.setOnClickListener {
             // untuk foto
-//        ivSimpan.setOnClickListener {
             val image = when {
                 ::imageUri.isInitialized -> imageUri
                 firebaseUser?.photoUrl == null -> Uri.parse("https://picsum.photos/id/58/200/200")
@@ -93,7 +87,6 @@ class DetailProfileActivity : AppCompatActivity() {
 
             // deklarasi
             val nama = edNama.text.toString().trim()
-//            val email = edEmail.text.toString().trim()
 
             // untuk nama
             if (nama.isEmpty()) {
@@ -101,49 +94,6 @@ class DetailProfileActivity : AppCompatActivity() {
                 edNama.requestFocus()
                 return@setOnClickListener
             }
-
-//            if (email.isEmpty()) {
-//                edNama.error = "Email harus dilsi"
-//                edNama.requestFocus()
-//                return@setOnClickListener
-//            }
-//
-//            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-//                edNama.error = "Email tidak valid"
-//                edNama.requestFocus()
-//                return@setOnClickListener
-//            }
-
-//            firebaseUser?.let {
-//                firebaseUser.updateEmail(email).addOnCompleteListener {
-//                    if (it.isSuccessful){
-//                        val actionEmailUpdated = Upd
-//                    }
-//                }
-//            }
-
-//            val user = FirebaseAuth.getInstance().currentUser
-//            // Get auth credentials from the user for re-authentication
-//            // Get auth credentials from the user for re-authentication
-//            val credential = EmailAuthProvider
-//                .getCredential() // Current Login Credentials \\
-//
-//            // Prompt the user to re-provide their sign-in credentials
-//            // Prompt the user to re-provide their sign-in credentials
-//            user!!.reauthenticate(credential)
-//                .addOnCompleteListener {
-//                    Log.d(TAG, "User re-authenticated.")
-//                    //Now change your email address \\
-//                    //----------------Code for Changing Email Address----------\\
-//                    val user = FirebaseAuth.getInstance().currentUser
-//                    user!!.updateEmail("user@example.com")
-//                        .addOnCompleteListener { task ->
-//                            if (task.isSuccessful) {
-//                                Log.d(TAG, "User email address updated.")
-//                            }
-//                        }
-//                    //----------------------------------------------------------\\
-//                }
 
             // untuk tombol simpan
             UserProfileChangeRequest.Builder()
@@ -168,15 +118,6 @@ class DetailProfileActivity : AppCompatActivity() {
 //        supportActionBar?.title = "Edit Profile"
         supportActionBar?.hide()
     }
-
-
-//    private fun intentCamera() {
-//        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { intent ->
-//            intent.resolveActivity(packageManager)?.also {
-//                startActivityForResult(intent, REQUEST_CAMERA)
-//            }
-//        }
-//    }
 
     @SuppressLint("QueryPermissionsNeeded")
     private fun intentCamera() {
@@ -219,10 +160,5 @@ class DetailProfileActivity : AppCompatActivity() {
                 }
             }
     }
-
-//    override fun onSupportNavigateUp(): Boolean {
-//        onBackPressed()
-//        return true
-//    }
 
 }

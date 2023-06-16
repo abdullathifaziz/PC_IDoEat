@@ -30,8 +30,4 @@ class DetailBantuanActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-//    override fun onSupportNavigateUp(): Boolean {
-//        onBackPressed()
-//        return true
-//    }
 }

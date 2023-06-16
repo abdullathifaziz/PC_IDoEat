@@ -4,7 +4,6 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -12,13 +11,10 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.R
-import com.example.capstone_idoeat.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 
 class RegisterActivity : AppCompatActivity() {
-
-//    private lateinit var binding: ActivityRegisterBinding
 
     lateinit var editFullName: EditText
     lateinit var editEmail: EditText

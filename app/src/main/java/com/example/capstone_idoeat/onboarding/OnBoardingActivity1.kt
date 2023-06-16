@@ -42,7 +42,7 @@ class OnBoardingActivity1 : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v?.id){
+        when (v?.id) {
             R.id.btn_onb_1_lewati -> {
                 val btnLewati = Intent(this@OnBoardingActivity1, LoginActivity::class.java)
                 startActivity(btnLewati)
@@ -55,7 +55,7 @@ class OnBoardingActivity1 : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun propertyAnimation(){
+    private fun propertyAnimation() {
         ObjectAnimator.ofFloat(binding.ivOnb1, View.TRANSLATION_X, -30f, 30f).apply {
             duration = 4000
             repeatCount = ObjectAnimator.INFINITE
@@ -65,13 +65,11 @@ class OnBoardingActivity1 : AppCompatActivity(), View.OnClickListener {
         val imageView = ObjectAnimator.ofFloat(binding.ivOnb1, View.ALPHA, 1f).setDuration(500)
         val textTitle = ObjectAnimator.ofFloat(binding.tvTitleOnb1, View.ALPHA, 1f).setDuration(500)
         val textdesc = ObjectAnimator.ofFloat(binding.tvDesOnb1, View.ALPHA, 1f).setDuration(500)
-        val btnLewati = ObjectAnimator.ofFloat(binding.btnOnb1Lewati, View.ALPHA, 1f).setDuration(500)
-        val btnLanjut = ObjectAnimator.ofFloat(binding.btnOnb1Lanjut, View.ALPHA, 1f).setDuration(500)
+        val btnLewati =
+            ObjectAnimator.ofFloat(binding.btnOnb1Lewati, View.ALPHA, 1f).setDuration(500)
+        val btnLanjut =
+            ObjectAnimator.ofFloat(binding.btnOnb1Lanjut, View.ALPHA, 1f).setDuration(500)
         val slidenav = ObjectAnimator.ofFloat(binding.ivSlideNav, View.ALPHA, 1f).setDuration(500)
-
-//        val btn = AnimatorSet().apply {
-//            playTogether(btnLewati, slidenav, btnLanjut)
-//        }
 
         AnimatorSet().apply {
             playSequentially(imageView, textTitle, textdesc)

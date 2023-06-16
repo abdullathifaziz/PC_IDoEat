@@ -20,8 +20,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 
 class LoginActivity : AppCompatActivity() {
 
-//    private lateinit var binding: ActivityLoginBinding
-
     private lateinit var editEmail: EditText
     private lateinit var editPassword: EditText
     private lateinit var btnLogin: Button
@@ -46,17 +44,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-//        binding = ActivityLoginBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//
-//        binding.tvBuatAkunKecil.setOnClickListener {
-//            alihLoginKeRegister()
-//        }
-//
-//        binding.btnLogin.setOnClickListener {
-//            masukKeHome()
-//        }
 
         editEmail = findViewById(R.id.ed_login_email)
         editPassword = findViewById(R.id.ed_login_password)
@@ -144,35 +131,4 @@ class LoginActivity : AppCompatActivity() {
                 progressDialog.dismiss()
             }
     }
-
-
-
-
-
-
-
-
-
-
-
-//
-//    private fun masukKeHome(){
-//        Intent(this@LoginActivity, MainActivity::class.java).also {
-//            startActivity(it)
-//        }
-//    }
-//
-//    private fun alihLoginKeRegister(){
-//        Intent(this@LoginActivity, RegisterActivity::class.java).also {
-//            startActivity(it)
-//        }
-//    }
-//
-//    private fun showLoading(state: Boolean){
-//        if(state){
-//            binding.progressBar.visibility = View.VISIBLE
-//        }else{
-//            binding.progressBar.visibility = View.GONE
-//        }
-//    }
 }

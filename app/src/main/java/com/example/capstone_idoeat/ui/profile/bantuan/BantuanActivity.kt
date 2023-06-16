@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.capstone_idoeat.MainActivity
 import com.example.capstone_idoeat.databinding.ActivityBantuanBinding
-import com.example.capstone_idoeat.ui.profile.ProfileFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class BantuanActivity : AppCompatActivity() {
@@ -17,7 +16,6 @@ class BantuanActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_bantuan)
 
         binding = ActivityBantuanBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -100,9 +98,4 @@ class BantuanActivity : AppCompatActivity() {
 //        supportActionBar?.title = "Pusat Bantuan"
         supportActionBar?.hide()
     }
-
-//    override fun onSupportNavigateUp(): Boolean {
-//        onBackPressed()
-//        return true
-//    }
 }

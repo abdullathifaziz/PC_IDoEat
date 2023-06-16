@@ -17,8 +17,6 @@ import com.example.capstone_idoeat.onboarding.OnBoardingActivity3
 
 class TentangActivity : AppCompatActivity(), View.OnClickListener {
 
-    //    private lateinit var binding: ActivityTentangBinding
-//    private lateinit var kembali: TextView
     private lateinit var preference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,11 +24,6 @@ class TentangActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_tentang)
 
         preference = UserPreference(this)
-//        binding = ActivityTentangBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-
-//        kembali = findViewById(R.id.kembali)
-//        kembali.setOnClickListener(this)
 
         val kembali: TextView = findViewById(R.id.kembali)
         kembali.setOnClickListener(this)
@@ -46,6 +39,5 @@ class TentangActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-
 
 }

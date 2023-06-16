@@ -28,7 +28,6 @@ class PengaturanAppActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_pengaturan_app)
 
-//        loadLocate()
         preference = UserPreference(this)
         context = this
 
@@ -36,10 +35,8 @@ class PengaturanAppActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val ivKembali: ImageView = binding.ivBack
-//        val btnBahasa: Button = binding.btnBahasa
         val spSpinner: Spinner = binding.spinner
         val btnSimpan: Button = binding.btnSimpanApp
-
 
         spSpinner.adapter = ArrayAdapter(this, R.layout.simple_list_item_1,languageList)
 
@@ -49,17 +46,10 @@ class PengaturanAppActivity : AppCompatActivity() {
             spSpinner.setSelection(index)
         }
 
-
         ivKembali.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
-
-//        btnBahasa.setOnClickListener {
-////            tampilkanUbahBahasa()
-//            val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-//            startActivity(intent)
-//        }
 
         btnSimpan.setOnClickListener {
             preference.setLoginCount(languageList[spSpinner.selectedItemPosition])
@@ -68,70 +58,9 @@ class PengaturanAppActivity : AppCompatActivity() {
             finish()
         }
 
-
-
 //        supportActionBar!!.setTitle(Html.fromHtml("<font color=\"#6C4AB6\">"+getString(R.string.back_aplikasi)+"</font>"))
 //        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 //        supportActionBar?.title = "Pengaturan Aplikasi"
         supportActionBar?.hide()
     }
-
-//    private fun tampilkanUbahBahasa() {
-//        val listItems = arrayOf("Indonesia", "English")
-//
-//        val nBuilder = AlertDialog.Builder(this@PengaturanAppActivity)
-//        nBuilder.setTitle("Pilih Bahasa")
-//        nBuilder.setSingleChoiceItems(listItems, -1) { dialog, which ->
-//            if (which == 0) {
-////                preference.setLocate("in")
-//                setLocate("in")
-//                recreate()
-//            } else if (which == 1) {
-////                preference.setLocate("en")
-//                setLocate("en")
-//                recreate()
-//            }
-//            dialog.dismiss()
-//        }
-//        val nDialog = nBuilder.create()
-//        nDialog.show()
-//    }
-
-//    private fun setLocate(lang: String) {
-//        val locale = Locale(lang)
-//        Locale.setDefault(locale)
-//        val config = Configuration()
-//        config.locale = locale
-//        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-//
-////        val lang = preference.getLoginCount()
-////        val index = listItems.indexOf(lang)
-//
-////        preference.getLoginCount()
-////        preference.setLoginCount(lang)
-//        val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
-//        editor.putString("My_Lang", lang)
-//        editor.apply()
-//    }
-
-
-
-//    private fun loadLocate() {
-//        val sharedPreferences = getSharedPreferences("Settings", Context.MODE_PRIVATE)
-//        val language = sharedPreferences.getString("My_Lang", "")
-//        setLocate(language!!)
-//    }
-
-
-//    override fun attachBaseContext(newBase: Context?) {
-//        preference = UserPreference(newBase!!)
-//        val lang = preference.getLoginCount()
-//        super.attachBaseContext(lang?.let { MyContextWrapper.wrap(newBase, it) })
-//    }
-
-
-//    override fun onSupportNavigateUp(): Boolean {
-//        onBackPressed()
-//        return true
-//    }
 }
